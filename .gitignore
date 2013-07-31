@@ -9,5 +9,5 @@
 *.externalToolBuilders
 *.settings
 
-*/target/
-*/.settings/
+*/target
+*/.settings

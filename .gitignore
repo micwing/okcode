@@ -6,7 +6,8 @@
 *.ear
 *.classpath
 *.project
+*.externalToolBuilders
 *.settings
 
-/target/
-/.settings/
+*/target/
+*/.settings/

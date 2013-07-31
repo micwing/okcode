@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>okcode</groupId>
+		<artifactId>app-parent</artifactId>
+		<version>1.0.0</version>
+	</parent>
+	<artifactId>main-war</artifactId>
+	<packaging>war</packaging>
+	<name>${project.artifactId}</name>
+	<description>App's War</description>
+
+	<dependencies>
+		<!-- app begin -->
+			<dependency>
+				<groupId>okcode</groupId>
+				<artifactId>service-standard</artifactId>
+			</dependency>
+			<dependency>
+				<groupId>okcode</groupId>
+				<artifactId>service-standard-intf</artifactId>
+			</dependency>
+			<dependency>
+				<groupId>okcode</groupId>
+				<artifactId>biz-trading</artifactId>
+			</dependency>
+			<dependency>
+				<groupId>okcode</groupId>
+				<artifactId>biz-trading-intf</artifactId>
+			</dependency>
+			<dependency>
+				<groupId>okcode</groupId>
+				<artifactId>main-framework</artifactId>
+			</dependency>
+			<dependency>
+				<groupId>okcode</groupId>
+				<artifactId>web-controller</artifactId>
+			</dependency>
+		<!-- app end -->
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>jsp-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.ckfinder</groupId>
+			<artifactId>CKFinder</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.ckfinder</groupId>
+			<artifactId>CKFinderPlugin-FileEditor</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.ckfinder</groupId>
+			<artifactId>CKFinderPlugin-ImageResize</artifactId>
+		</dependency>
+	</dependencies>
+
+</project>

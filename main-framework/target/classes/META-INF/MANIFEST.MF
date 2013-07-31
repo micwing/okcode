@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Implementation-Title: main-framework
+Implementation-Version: 1.0.0
+Implementation-Vendor-Id: okcode
+Build-Jdk: 1.6.0_37
+Built-By: Administrator
+Created-By: Maven Integration for Eclipse
+Implementation-Build: byyyyMMddHHmm
+

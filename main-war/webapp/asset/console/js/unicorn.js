@@ -6,6 +6,7 @@ $(document).ready(function(){
 
 	reSetJqueryAlert();
 	reWriteJQueryAjax();
+	bindSwitchCheckbox();
 	
 	// === Sidebar navigation === //
 	
@@ -115,15 +116,23 @@ $(document).ready(function(){
 	
 });
 
+function bindSwitchCheckbox() {
+	$('.make-switch').on('switch-change', function (e, data) {
+		$(".make-switch input:checkbox").attr('checked', data.value);
+	});
+}
+
 function reSetJqueryAlert() {
 	$.alert = function(text, type) {
-		type = type||'alert';
-		noty({
-			type: type,
-			layout: 'bottom',
-			timeout: 5000,
-			closeWith: ['click'],
-			text: text});
+		type = type||'info';
+		$.globalMessenger().post({
+			  message: text,
+			  type: 'error',//success,info,error
+			  showCloseButton: true
+			});
+	};
+	$._messengerDefaults = {
+		extraClasses: 'messenger-fixed messenger-theme-future messenger-on-bottom'
 	};
 }
 

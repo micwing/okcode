@@ -25,10 +25,9 @@
 								<div class="control-group">
 									<label class="control-label" for="">管理员登录验证码</label>
 									<div class="controls">
-										<label class="checkbox">
-										<input type="checkbox" name="">
-										开启后管理员登录需要输入验证码
-										</label>
+										<div class="make-switch switch-small" data-on-label="开" data-off-label="关">
+						                    <input type="checkbox" id="admin_verification_ckb" checked />
+						                </div>
 									</div>
 								</div>
 								<div class="control-group">
@@ -73,7 +72,7 @@
 									</div>	
 								</div>
 								<div class="form-actions">
-									<button class="btn btn-primary" type="submit">保存</button>
+									<button class="btn btn-primary" type="button" onclick="alert($('#admin_verification_ckb').attr('checked'))">保存</button>
 								</div>
 							</form>
 						</div>

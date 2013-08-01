@@ -1,10 +1,11 @@
 <%@page contentType="text/html;charset=utf-8" pageEncoding="utf-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <div id="breadcrumb">
 	<a href="${ctx}/console/home"><i class="icon-home"></i> 首页</a>
-	<a href="${ctx}/console/baseConfig"><i class="icon-cog"></i> 系统设置</a>
-	<a href="${ctx}/console/baseConfig">基本设置</a>
-	<a class="current" href="${ctx}/console/baseConfig/emailConfig">邮箱配置</a>
+	<a href="#"><i class="icon-cog"></i> 系统设置</a>
+	<a href="#">基本设置</a>
+	<a class="current" href="${ctx}/console/baseConfig/runStatus">运行状态</a>
 </div>
 <div class="container-fluid">
 	<div class="row-fluid">
@@ -15,10 +16,10 @@
 						<li class="">
 						<a href="${ctx}/console/baseConfig">基本信息</a>
 						</li>
-						<li class="active">
+						<li class="">
 						<a href="${ctx}/console/baseConfig/emailConfig">邮箱配置</a>
 						</li>
-						<li class="">
+						<li class="active">
 						<a href="${ctx}/console/baseConfig/runStatus">运行状态</a>
 						</li>
 					</ul>
@@ -28,42 +29,30 @@
 						<div class="span8">
 						
 							<form id="fform" class="form-horizontal" method="get" action="#">
-								<div class="alert">
-									以下信息用于发送系统邮件，请务必正确填写
-									<a href="#" data-dismiss="alert" class="close">×</a>
-								</div>
 								<div class="control-group">
-									<label class="control-label" for="senderName"><span class="red">*</span> 发件人姓名</label>
+									<label class="control-label" for="runStatus">网站运行状态</label>
 									<div class="controls">
-										<input type="text" name="senderName" value="${dto.senderName}">
-										<span class="help-block">所显示的发件人姓名</span>
+										<div class="btn-group">
+											<select name="runStatus">
+												<option value="NORMAL" ${dto.runStatus == 'NORMAL' ? 'selected':''}>正常运行</option>
+												<option value="PAUSED" ${dto.runStatus == 'PAUSED' ? 'selected':''}>暂停倒计时</option>
+												<option value="DELETED" ${dto.runStatus == 'DELETED' ? 'selected':''}>完全关闭</option>
+											</select>
+										</div>
 									</div>	
 								</div>
 								<div class="control-group">
-									<label class="control-label" for="address"><span class="red">*</span> 邮箱账号</label>
+									<label class="control-label" for="recoverTime">恢复时间</label>
 									<div class="controls">
-										<input type="text" name="address" value="${dto.address}">
-										<span class="help-block">用于发送邮件的邮箱账号</span>
+										<input class="Wdate" type="text" name="recoverTime" value="${dto.recoverTime}" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" readonly="readonly" placeholder="点击选择时间"/>
+										<span class="help-block">“暂停倒计时”状态下的恢复正常运行的时间点</span>
 									</div>	
 								</div>
 								<div class="control-group">
-									<label class="control-label" for="stmpServer"><span class="red">*</span> SMTP服务器</label>
+									<label class="control-label" for="siteNotice">网站通知</label>
 									<div class="controls">
-										<input type="text" name="stmpServer" value="${dto.stmpServer}">
-										<span class="help-block">如163邮箱为smtp.163.com</span>
-									</div>	
-								</div>
-								<div class="control-group">
-									<label class="control-label" for="password"><span class="red">*</span> 邮箱密码</label>
-									<div class="controls">
-										<input type="password" name="password" value="${dto.password}">
-										<span class="help-block">用于发送邮件的邮箱密码</span>
-									</div>	
-								</div>
-								<div class="control-group">
-									<label class="control-label" for=""><span class="red">*</span> 邮件发送测试</label>
-									<div class="controls">
-										<input class="btn" type="button" name="" value="点击测试">
+										<textarea name="siteNotice" rows="4" cols="4" placeholder="网站通知">${dto.siteNotice}</textarea>
+										<span class="help-block">“暂停倒计时”或者“完全关闭”状态下挂出的通知，1000字以内</span>
 									</div>	
 								</div>
 								<div class="form-actions">
@@ -73,7 +62,7 @@
 						</div>
 						<div class="span4">
 						</div>
-					</div>	
+					</div>
 				</div>
 			</div>					
 		</div>
@@ -83,7 +72,7 @@
 function doSave() {
 	if ($('#fform').valid()) {
 		$.ajax2({
-			url : "${ctx}/console/baseConfig/doSaveEmailConfig",
+			url : "${ctx}/console/baseConfig/doSaveRunStatus",
 			data : $("#fform").serialize(),
 			btn : '#save-btn'
 		});
@@ -93,20 +82,13 @@ $(function() {
 	
 	$('#fform').validate({
 		rules: {
-			senderName: {
-				required: true,
+			runStatus: {
+				required: true
+			},
+			recoverTime: {
 				maxlength:1000
 			},
-			address: {
-				required: true,
-				maxlength:1000
-			},
-			stmpServer: {
-				required: true,
-				maxlength:1000
-			},
-			password: {
-				required: true,
+			siteNotice: {
 				maxlength:1000
 			}
 		},

@@ -5,11 +5,11 @@
                 <div class="row">
                     <div class="span4 logo">
                         <a class="logo" href="index.html">
-                            <img alt="logo" title="bizstrap" src="${ctx}/asset/portal/img/logo.png">
+                            <img alt="logo" title="${baseConfig.systemName}" src="${ctx}${baseConfig.siteLogoUrl}">
                         </a>
                     </div>
                     <div class="span4 offset4">
-                        <p class="head_phone"><a href="tel_3A555-555-5555">(800) 655-7800</a></p>
+                        <p class="head_phone">${baseConfig.siteDescription}</p>
                     </div>
                     <ul class="socials unstyled">
                         <li><a class="flickr" href="#"></a></li>

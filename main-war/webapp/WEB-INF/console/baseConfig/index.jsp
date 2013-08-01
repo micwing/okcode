@@ -2,8 +2,8 @@
 
 <div id="breadcrumb">
 	<a href="${ctx}/console/home"><i class="icon-home"></i> 首页</a>
-	<a href="#"><i class="icon-cog"></i> 系统设置</a>
-	<a href="#">基本设置</a>
+	<a href="${ctx}/console/baseConfig"><i class="icon-cog"></i> 系统设置</a>
+	<a href="${ctx}/console/baseConfig">基本设置</a>
 	<a class="current" href="#">基本信息</a>
 </div>
 <div class="container-fluid">
@@ -16,7 +16,10 @@
 						<a href="${ctx}/console/baseConfig">基本信息</a>
 						</li>
 						<li class="">
-						<a href="${ctx}/console/baseConfig/emailConfig">系统邮箱配置</a>
+						<a href="${ctx}/console/baseConfig/emailConfig">邮箱配置</a>
+						</li>
+						<li class="">
+						<a href="${ctx}/console/baseConfig/runStatus">运行状态</a>
 						</li>
 					</ul>
 				</div>

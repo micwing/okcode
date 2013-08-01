@@ -6,7 +6,6 @@
 	<ul>
 		<li class="${fn:startsWith(requestServletPath, '/console/home/')?'active':''}"><a href="${ctx}/console/home"><i class="icon icon-home"></i> <span>首页</span></a></li>
 		<li class="submenu ${fn:startsWith(requestServletPath, '/console/baseConfig/')
-							||fn:startsWith(requestServletPath, '/console/runStatus/')
 							||fn:startsWith(requestServletPath, '/console/imageConfig/')
 							||fn:startsWith(requestServletPath, '/console/safetyConfig/')
 							||fn:startsWith(requestServletPath, '/console/dataBackup/')
@@ -14,7 +13,6 @@
 			<a href="#"><i class="icon icon-cog"></i> <span>系统设置</span> <span class="label"><i class="icon icon-chevron-down"></i></span></a>
 			<ul>
 				<li class="${fn:startsWith(requestServletPath, '/console/baseConfig/')?'active':''}"><a href="${ctx}/console/baseConfig">基本设置</a></li>
-				<li class="${fn:startsWith(requestServletPath, '/console/runStatus/')?'active':''}"><a href="${ctx}/console/runStatus">运行状态</a></li>
 				<li class="${fn:startsWith(requestServletPath, '/console/imageConfig/')?'active':''}"><a href="${ctx}/console/imageConfig">图片设置</a></li>
 				<li class="${fn:startsWith(requestServletPath, '/console/safetyConfig/')?'active':''}"><a href="${ctx}/console/safetyConfig">网站安全</a></li>
 				<li class="${fn:startsWith(requestServletPath, '/console/dataBackup/')?'active':''}"><a href="${ctx}/console/dataBackup">数据备份</a></li>

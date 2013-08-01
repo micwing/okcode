@@ -1,6 +1,8 @@
 package okcode.web.console.sysconfig;
 
 import okcode.biz.trading.dto.BaseConfigDto;
+import okcode.biz.trading.dto.EmailConfigDto;
+import okcode.biz.trading.dto.RunStatusDto;
 import okcode.biz.trading.intf.BaseConfigService;
 import okcode.framework.result.Result;
 import okcode.web.base.BaseController;
@@ -41,9 +43,33 @@ public class ConsoleBaseConfigController extends BaseController {
 		return result;
 	}
 	
-	@RequestMapping(value = "emailConfig", method = RequestMethod.GET)
+	@RequestMapping(value = "/emailConfig", method = RequestMethod.GET)
 	public ModelAndView emailConfig() {
 		ModelAndView mav = new ModelAndView(CONSOLE + "baseConfig/emailConfig");
+		mav.addObject("dto", baseConfigService.findEmailConfig());
 		return mav;
+	}
+	
+	@RequestMapping(value = "/doSaveEmailConfig", method = RequestMethod.POST)
+	@ResponseBody
+	public Result doSaveEmailConfig(EmailConfigDto dto) {
+		baseConfigService.saveEmailConfig(dto);
+		Result result = new Result("保存成功！");
+		return result;
+	}
+	
+	@RequestMapping(value = "/runStatus", method = RequestMethod.GET)
+	public ModelAndView runStatus() {
+		ModelAndView mav = new ModelAndView(CONSOLE + "baseConfig/runStatus");
+		mav.addObject("dto", baseConfigService.findRunStatus());
+		return mav;
+	}
+	
+	@RequestMapping(value = "/doSaveRunStatus", method = RequestMethod.POST)
+	@ResponseBody
+	public Result doSaveRunStatus(RunStatusDto dto) {
+		baseConfigService.saveRunStatus(dto);
+		Result result = new Result("保存成功！");
+		return result;
 	}
 }

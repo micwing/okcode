@@ -5,8 +5,6 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import okcode.biz.trading.util.ConfigConstants;
-
 
 public class BaseConfigDto {
 	
@@ -14,30 +12,30 @@ public class BaseConfigDto {
 	}
 	
 	public BaseConfigDto(Map<String, String> map) {
-		this.systemName = map.get(ConfigConstants.BASECONFIG_SYSTEM_NAME);
-		this.siteLogoUrl = map.get(ConfigConstants.BASECONFIG_SITE_LOGO_URL);
-		this.siteUrl = map.get(ConfigConstants.BASECONFIG_SITE_URL);
-		this.siteKeyword = map.get(ConfigConstants.BASECONFIG_SITE_KEYWORD);
-		this.siteDescription = map.get(ConfigConstants.BASECONFIG_SITE_DESCRIPTION);
+		this.systemName = map.get("systemName");
+		this.siteLogoUrl = map.get("siteLogoUrl");
+		this.siteUrl = map.get("siteUrl");
+		this.siteKeyword = map.get("siteKeyword");
+		this.siteDescription = map.get("siteDescription");
 	}
 	
 	public Map<String, String> toMap() {
 		Map<String, String> map = new HashMap<String, String>();
-		map.put(ConfigConstants.BASECONFIG_SYSTEM_NAME, getSystemName());
-		map.put(ConfigConstants.BASECONFIG_SITE_LOGO_URL, getSiteLogoUrl());
-		map.put(ConfigConstants.BASECONFIG_SITE_URL, getSiteUrl());
-		map.put(ConfigConstants.BASECONFIG_SITE_KEYWORD, getSiteKeyword());
-		map.put(ConfigConstants.BASECONFIG_SITE_DESCRIPTION, getSiteDescription());
+		map.put("systemName", getSystemName());
+		map.put("siteLogoUrl", getSiteLogoUrl());
+		map.put("siteUrl", getSiteUrl());
+		map.put("siteKeyword", getSiteKeyword());
+		map.put("siteDescription", getSiteDescription());
 		return map;
 	}
 	
 	public static Set<String> getKeys() {
 		Set<String> set = new HashSet<String>();
-		set.add(ConfigConstants.BASECONFIG_SYSTEM_NAME);
-		set.add(ConfigConstants.BASECONFIG_SITE_LOGO_URL);
-		set.add(ConfigConstants.BASECONFIG_SITE_URL);
-		set.add(ConfigConstants.BASECONFIG_SITE_KEYWORD);
-		set.add(ConfigConstants.BASECONFIG_SITE_DESCRIPTION);
+		set.add("systemName");
+		set.add("siteLogoUrl");
+		set.add("siteUrl");
+		set.add("siteKeyword");
+		set.add("siteDescription");
 		return set;
 	}
 	

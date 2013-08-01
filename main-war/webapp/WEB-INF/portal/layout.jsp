@@ -9,10 +9,10 @@
       
       <!--  SEO STUFF START HERE -->
   	<link rel="shortcut icon" href="${ctx}/asset/portal/img/favicon.ico">
-    <title>一刻建站 | 享受这一刻，让网络建站轻轻松松！</title>
-    <meta name="keywords" content="" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
+    <title>${baseConfig.systemName} - ${baseConfig.siteKeyword}</title>
+    <meta name="keywords" content="${baseConfig.siteKeyword}" />
+    <meta name="description" content="${baseConfig.siteDescription}" />
+    <meta name="author" content="一刻建站|onekr.com" />
     <meta name="robots" content="follow, index" />
     <!--  SEO STUFF END -->
       

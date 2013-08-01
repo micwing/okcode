@@ -21,7 +21,7 @@ public class BaseConfigServiceImpl implements BaseConfigService {
 	@Override
 	public void saveBaseConfig(BaseConfigDto dto) {
 		Map<String, String> ownerValues = dto.toMap();
-		configService.saveConfigs(BizKeyValue.CONFIG_SERVICE_SYS_CONFIG.toString(), ownerValues, dto.getUserId());
+		configService.saveConfigs(BizKeyValue.CONFIG_SERVICE_SYS_CONFIG.toString(), ownerValues, 0L);
 	}
 
 	@Override

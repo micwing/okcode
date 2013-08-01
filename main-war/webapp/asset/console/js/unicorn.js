@@ -127,7 +127,7 @@ function reSetJqueryAlert() {
 		type = type||'info';
 		$.globalMessenger().post({
 			  message: text,
-			  type: 'error',//success,info,error
+			  type: type,//success,info,error
 			  showCloseButton: true
 			});
 	};

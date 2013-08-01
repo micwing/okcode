@@ -40,7 +40,7 @@ public class Config implements Serializable {
 	@Column(name = "user_id", nullable = false)
 	private Long userId;
 
-	@Column(name = "value")
+	@Column(name = "value", length = 4000)
 	private String value;
 	
 	

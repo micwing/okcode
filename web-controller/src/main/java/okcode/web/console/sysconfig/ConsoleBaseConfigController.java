@@ -33,11 +33,11 @@ public class ConsoleBaseConfigController extends BaseController {
 		return mav;
 	}
 	
-	@RequestMapping(value = "/saveBaseConfig", method = RequestMethod.POST)
+	@RequestMapping(value = "/doSaveBaseConfig", method = RequestMethod.POST)
 	@ResponseBody
-	public Result saveBaseConfig(BaseConfigDto dto) {
+	public Result doSaveBaseConfig(BaseConfigDto dto) {
 		baseConfigService.saveBaseConfig(dto);
-		Result result = new Result();
+		Result result = new Result("保存成功！");
 		return result;
 	}
 	

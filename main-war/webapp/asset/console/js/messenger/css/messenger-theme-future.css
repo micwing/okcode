@@ -234,7 +234,7 @@ ul.messenger.messenger-spinner-active .messenger-spinner .messenger-spinner {
   transform-origin: 100% 50%;
 }
 
-/* line 15, ../../src/sass/messenger-theme-future.sass */
+/* line 15, ../../src/sass/messenger-theme-future.sass,,,background-color: #5c5b5b */
 ul.messenger-theme-future {
   -webkit-box-shadow: inset 0px 1px rgba(255, 255, 255, 0.24), 0px 1px 5px rgba(0, 0, 0, 0.6);
   -moz-box-shadow: inset 0px 1px rgba(255, 255, 255, 0.24), 0px 1px 5px rgba(0, 0, 0, 0.6);
@@ -248,12 +248,12 @@ ul.messenger-theme-future {
   -webkit-user-select: none;
   -o-user-select: none;
   user-select: none;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #5c5b5b), color-stop(100%, #353535));
-  background-image: -webkit-linear-gradient(#5c5b5b, #353535);
-  background-image: -moz-linear-gradient(#5c5b5b, #353535);
-  background-image: -o-linear-gradient(#5c5b5b, #353535);
-  background-image: linear-gradient(#5c5b5b, #353535);
-  background-color: #5c5b5b;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #0D0D0D), color-stop(100%, #353535));
+  background-image: -webkit-linear-gradient(#0D0D0D, #353535);
+  background-image: -moz-linear-gradient(#0D0D0D, #353535);
+  background-image: -o-linear-gradient(#0D0D0D, #353535);
+  background-image: linear-gradient(#0D0D0D, #353535);
+  background-color: #0D0D0D;
   border: 1px solid rgba(0, 0, 0, 0.5);
 }
 /* line 24, ../../src/sass/messenger-theme-future.sass */

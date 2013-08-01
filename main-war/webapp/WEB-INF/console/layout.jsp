@@ -61,6 +61,9 @@
 	<script src="${ctx}/asset/console/js/fullcalendar.min.js"></script>
 	<script src="${ctx}/asset/console/js/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
 	
+	<script src="${ctx}/asset/console/js/ckeditor/ckeditor.js" type="text/javascript"></script>
+	<script src="${ctx}/asset/console/js/ckfinder/ckfinder.js" type="text/javascript"></script>
+	
 	<script src="${ctx}/asset/console/js/bootstrap-switch/js/bootstrap-switch.js"></script>
 	<script src="${ctx}/asset/console/js/messenger/js/messenger.min.js"></script>
 	<script src="${ctx}/asset/console/js/validate/jquery.validate.js" type="text/javascript"></script>

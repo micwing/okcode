@@ -81,10 +81,6 @@
 									<label class="control-label" for="content">详细内容</label>
 									<div class="controls">
 										<textarea id="cke-content" name="content">${article.content}</textarea>
-										<script type="text/javascript" src="${ctx}/asset/console/js/ckeditor/ckeditor.js"></script>
-										<script type="text/javascript">
-										var cke = CKEDITOR.replace('cke-content');
-										</script>
 									</div>
 								</div>
 								<div class="form-actions">
@@ -100,6 +96,7 @@
 	</div>
 </div>
 <script type="text/javascript">
+var cke;
 function doSave() {
 	if ($('#ffrom').valid()) {
 		$('#cke-content').val(cke.getData());
@@ -115,8 +112,8 @@ function doSave() {
 		});
 	}
 }
-
 $(function () {
+	cke = CKEDITOR.replace('cke-content');
 	
 	$('#ffrom').validate({
 		rules: {

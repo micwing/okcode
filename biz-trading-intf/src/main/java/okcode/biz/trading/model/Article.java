@@ -33,6 +33,18 @@ public class Article implements Serializable {
 
 	private static final long serialVersionUID = -441280225512165188L;
 	
+	public static final String ATTR_PRICE = "price";
+	public static final String ATTR_IMAGE_URL_1 = "imageUrl1";
+	public static final String ATTR_IMAGE_URL_2 = "imageUrl1";
+	public static final String ATTR_IMAGE_URL_3 = "imageUrl1";
+	public static final String ATTR_IMAGE_URL_4 = "imageUrl1";
+	public static final String ATTR_IMAGE_URL_5 = "imageUrl1";
+	public static final String ATTR_IMAGE_URL_6 = "imageUrl6";
+	public static final String ATTR_IMAGE_URL_7 = "imageUrl7";
+	public static final String ATTR_IMAGE_URL_8 = "imageUrl8";
+	public static final String ATTR_IMAGE_URL_9 = "imageUrl9";
+	public static final String ATTR_IMAGE_URL_10 = "imageUrl10";
+	
 	@Transient
 	private Long catalogId;
 	@Transient
@@ -77,7 +89,7 @@ public class Article implements Serializable {
 	@JoinTable(name = StandardConstants.TABLE_PREFIX_NAMING + "trading_article_attr", joinColumns = @JoinColumn(name = "article_id"))
 	@MapKeyColumn(length = 255, name = "attr_key")
 	@Column(name = "attr_value", length = 3000)
-	private Map<String, String> attributes;
+	private Map<String, String> attr;
 
 	public Long getId() {
 		return id;
@@ -167,12 +179,12 @@ public class Article implements Serializable {
 		this.content = content;
 	}
 
-	public Map<String, String> getAttributes() {
-		return attributes;
+	public Map<String, String> getAttr() {
+		return attr;
 	}
 
-	public void setAttributes(Map<String, String> attributes) {
-		this.attributes = attributes;
+	public void setAttr(Map<String, String> attr) {
+		this.attr = attr;
 	}
 
 	public Long getClicks() {

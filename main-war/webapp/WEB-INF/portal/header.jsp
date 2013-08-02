@@ -26,13 +26,13 @@
                             <div class="nav-collapse">
                                 <ul class="nav nav-pills">
                                     <li class="active single">
-                                    	<a href="http://www.onekr.com">首页<i>Home</i></a>
+                                    	<a href="${baseConfig.siteUrl}">首页<i>Home</i></a>
                                     </li>
                                     <c:if test="${!empty catalogItems}">
                                     <c:forEach items="${catalogItems}" var="firstCatalogItem">
                                     	
                                     	<li class="${(empty firstCatalogItem.subCatalog) ? 'single':'dropdown'} ">
-	                                        <a href="${ctx}/catalog/${firstCatalogItem.catalog.module}/${firstCatalogItem.catalog.alias}" 
+	                                        <a href="${ctx}/portal/catalog/${firstCatalogItem.catalog.module}/${firstCatalogItem.catalog.alias}" 
 	                                        ${firstCatalogItem.catalog.newWindowOpen?'target=_blank':''}
 	                                        >
 	                                        ${firstCatalogItem.catalog.title}<i>${firstCatalogItem.catalog.subTitle}</i>
@@ -40,7 +40,7 @@
 	                                        <c:if test="${!empty firstCatalogItem.subCatalog}">
 	                                        <ul class="dropdown-menu">
 	                                        	<c:forEach items="${firstCatalogItem.subCatalog}" var="secondCatalogItem">
-                                            	<li><a href="${ctx}/catalog/${secondCatalogItem.catalog.module}/${secondCatalogItem.catalog.alias}" 
+                                            	<li><a href="${ctx}/portal/catalog/${secondCatalogItem.catalog.module}/${secondCatalogItem.catalog.alias}" 
                                             	${firstCatalogItem.catalog.newWindowOpen?'target=_blank':''}
                                             	>
                                             	${secondCatalogItem.catalog.title}

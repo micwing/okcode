@@ -31,7 +31,7 @@ import org.springframework.web.servlet.ModelAndView;
  * 
  */
 @Controller
-@RequestMapping(value = "/article")
+@RequestMapping(value = "/portal/article")
 public class PortalArticleController extends BaseController {
 	
 	@Autowired

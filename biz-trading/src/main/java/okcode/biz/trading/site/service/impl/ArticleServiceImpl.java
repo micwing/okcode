@@ -3,9 +3,11 @@ package okcode.biz.trading.site.service.impl;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import okcode.biz.trading.dto.ArticleDto;
 import okcode.biz.trading.enums.Module;
 import okcode.biz.trading.intf.ArticleService;
 import okcode.biz.trading.model.Article;
@@ -40,7 +42,7 @@ public class ArticleServiceImpl implements ArticleService {
 	private CountService countService;
 	
 	@Override
-	public Article saveArticle(Article article) {
+	public Article saveArticle(ArticleDto article) {
 		Article entity = null;
 		if (article.getId() == null || article.getId() == 0) {
 			entity = new Article();
@@ -56,28 +58,8 @@ public class ArticleServiceImpl implements ArticleService {
 			throw new AppException(ErrorCode.ENTITY_NOT_FOUND, "对应的栏目不存在！");
 		article.setCatalog(catalog);
 		
-		Module module = catalog.getModule();
-		//to save
-		if (module.ordinal() == Module.article.ordinal())
-			saveArticleModule(article, entity);
-		else if (module.ordinal() == Module.product.ordinal())
-			saveProductModule(article, entity);
-		else if (module.ordinal() == Module.image.ordinal())
-			saveImageModule(article, entity);
-		else if (module.ordinal() == Module.download.ordinal())
-			saveDownloadModule(article, entity);
-		else if (module.ordinal() == Module.exlink.ordinal())
-			saveExlinkModule(article, entity);
-		else if (module.ordinal() == Module.job.ordinal())
-			saveJobModule(article, entity);
-		else if (module.ordinal() == Module.message.ordinal())
-			saveMessageModule(article, entity);
-		return entity;
-	}
-	
-	private void saveArticleModule(Article article, Article entity) {
+		//基本数据处理
 		entity.setTopFlag(article.getTopFlag() == null ? false : article.getTopFlag());
-//		entity.setAttributes(attributes);
 		entity.setAuthor(article.getAuthor());
 		entity.setContent(article.getContent());
 		entity.setSubTitle(article.getSubTitle());
@@ -85,28 +67,64 @@ public class ArticleServiceImpl implements ArticleService {
 		entity.setUpdateAt(article.getUpdateAt() == null ? new Date() : article.getUpdateAt());
 		entity.setCatalog(article.getCatalog());
 		
+		//根据模块分别处理
+		Module module = catalog.getModule();
+		if (module.ordinal() == Module.article.ordinal())
+			handleSaveArticle(article, entity);
+		else if (module.ordinal() == Module.product.ordinal())
+			handleSaveProduct(article, entity);
+		else if (module.ordinal() == Module.image.ordinal())
+			handleSaveImage(article, entity);
+		else if (module.ordinal() == Module.download.ordinal())
+			handleSaveDownload(article, entity);
+		else if (module.ordinal() == Module.exlink.ordinal())
+			handleSaveExlink(article, entity);
+		else if (module.ordinal() == Module.job.ordinal())
+			handleSaveJob(article, entity);
+		else if (module.ordinal() == Module.message.ordinal())
+			handleSaveMessage(article, entity);
+		
+		//save
 		articleDao.save(entity);
 		long clicks = article.getClicks() == null ? 0 
 				: (article.getClicks() <= 0 ? 0 : article.getClicks() );
 		countService.saveCount(BizKeyValue.COUNT_SERVICE_ARTICLE_CLICKS.toString(), entity.getId()+"", clicks);
+		
+		return entity;
 	}
 	
-	private void saveProductModule(Article product, Article entity) {
+	private void handleSaveArticle(ArticleDto article, Article entity) {
 	}
 	
-	private void saveImageModule(Article product, Article entity) {
+	private void handleSaveProduct(ArticleDto product, Article entity) {
+		Map<String, String> attr = entity.getAttr() != null ? entity.getAttr() : new HashMap<String, String>();
+		attr.put(Article.ATTR_PRICE, product.getPrice());
+		attr.put(Article.ATTR_IMAGE_URL_1, product.getImageUrl1());
+		attr.put(Article.ATTR_IMAGE_URL_2, product.getImageUrl2());
+		attr.put(Article.ATTR_IMAGE_URL_3, product.getImageUrl3());
+		attr.put(Article.ATTR_IMAGE_URL_4, product.getImageUrl4());
+		attr.put(Article.ATTR_IMAGE_URL_5, product.getImageUrl5());
+		attr.put(Article.ATTR_IMAGE_URL_6, product.getImageUrl6());
+		attr.put(Article.ATTR_IMAGE_URL_7, product.getImageUrl7());
+		attr.put(Article.ATTR_IMAGE_URL_8, product.getImageUrl8());
+		attr.put(Article.ATTR_IMAGE_URL_9, product.getImageUrl9());
+		attr.put(Article.ATTR_IMAGE_URL_10, product.getImageUrl10());
+		entity.setAttr(attr);
 	}
 	
-	private void saveDownloadModule(Article product, Article entity) {
+	private void handleSaveImage(ArticleDto product, Article entity) {
 	}
 	
-	private void saveExlinkModule(Article product, Article entity) {
+	private void handleSaveDownload(ArticleDto product, Article entity) {
 	}
 	
-	private void saveJobModule(Article product, Article entity) {
+	private void handleSaveExlink(ArticleDto product, Article entity) {
 	}
 	
-	private void saveMessageModule(Article product, Article entity) {
+	private void handleSaveJob(ArticleDto product, Article entity) {
+	}
+	
+	private void handleSaveMessage(ArticleDto product, Article entity) {
 	}
 	
 	

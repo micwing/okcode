@@ -30,6 +30,7 @@ import org.springframework.web.servlet.ModelAndView;
  * 
  */
 @Controller
+@RequestMapping(value="/portal/catalog")
 public class PortalCatalogController extends BaseController {
 	
 	@Autowired
@@ -37,7 +38,7 @@ public class PortalCatalogController extends BaseController {
 	@Autowired
 	private ArticleService articleService;
 	
-	@RequestMapping(value="/catalog/{module}/{alias}",method = RequestMethod.GET)
+	@RequestMapping(value="/{module}/{alias}",method = RequestMethod.GET)
 	public ModelAndView index(@PathVariable("module") Module module,
 			@PathVariable("alias") String alias, Pageable page) {
 		//点击的栏目
@@ -52,7 +53,7 @@ public class PortalCatalogController extends BaseController {
 			List<Article> articles = articleService.findByCatalogId(Collections.singleton(catalog.getId()));
 			if (CollectionUtils.isEmpty(articles))
 				throw new AppException(ErrorCode.ENTITY_NOT_FOUND, "内容未找到！");
-			mav.setViewName("forward:/article/detail/"+articles.get(0).getId());
+			mav.setViewName("forward:/portal/article/detail/"+articles.get(0).getId());
 			
 		} else if (catalog.getClickDisplay().ordinal() == CatalogClickDisplay.FIRST_SUB_PAGE.ordinal()) {
 			//显示第一个子栏目点击后的显示
@@ -60,17 +61,17 @@ public class PortalCatalogController extends BaseController {
 			List<Catalog> catalogs = catalogService.findByParent(catalog.getId());
 			if (CollectionUtils.isEmpty(catalogs))
 				throw new AppException(ErrorCode.ENTITY_NOT_FOUND, "子栏目未找到！");
-			mav.setViewName("forward:/catalog/"+catalogs.get(0).getModule().toString()+"/"+catalogs.get(0).getAlias());
+			mav.setViewName("forward:/portal/catalog/"+catalogs.get(0).getModule().toString()+"/"+catalogs.get(0).getAlias());
 			
 		} else if (catalog.getClickDisplay().ordinal() == CatalogClickDisplay.CONTENT_LIST.ordinal()) {
 			//显示栏目内容列表
 			
-			mav.setViewName("forward:/article/list/"+catalog.getId());
+			mav.setViewName("forward:/portal/article/list/"+catalog.getId());
 			
 		} else if (catalog.getClickDisplay().ordinal() == CatalogClickDisplay.SUB_CONTENT_LIST.ordinal()) {
 			//显示子栏目内容列表
 			
-			mav.setViewName("forward:/article/sublist/"+catalog.getId());
+			mav.setViewName("forward:/portal/article/sublist/"+catalog.getId());
 			
 		}
 		return mav;

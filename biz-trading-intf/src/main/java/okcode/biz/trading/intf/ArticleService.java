@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
+import okcode.biz.trading.dto.ArticleDto;
 import okcode.biz.trading.enums.Module;
 import okcode.biz.trading.model.Article;
 
@@ -18,7 +19,7 @@ import org.springframework.validation.annotation.Validated;
 @Validated
 public interface ArticleService {
 	
-	Article saveArticle(@NotNull @Valid Article article);
+	Article saveArticle(@NotNull @Valid ArticleDto article);
 	
 	Article deleteArticle(@NotNull @Min(1) Long articleId);
 	

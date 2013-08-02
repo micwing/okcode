@@ -4,8 +4,8 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <div id="breadcrumb">
 	<a href="${ctx}/console/home"><i class="icon-home"></i> 首页</a>
-	<a href="${ctx}/console/contentManage/articleList?module=article"><i class="icon-list-alt"></i> 内容管理</a>
-	<a href="${ctx}/console/contentManage/articleList?module=${module}">模块内容管理</a>
+	<a href="${ctx}/console/contentManage/list?module=article"><i class="icon-list-alt"></i> 内容管理</a>
+	<a href="${ctx}/console/contentManage/list?module=${module}">模块内容管理</a>
 	<a class="current" href="#">${fn:replace(module.label, '模块', '')}内容详情</a>	
 </div>
 <div class="container-fluid">
@@ -77,6 +77,11 @@
 										 value="<fmt:formatDate value="${article.updateAt}" pattern="yyyy-MM-dd" />" />
 									</div>	
 								</div>
+								
+								<c:if test="${module == 'product'}">
+									<jsp:include page="product-detail-form-inc.jsp"></jsp:include>
+								</c:if>
+								
 								<div class="control-group">
 									<label class="control-label" for="content">详细内容</label>
 									<div class="controls">
@@ -85,7 +90,7 @@
 								</div>
 								<div class="form-actions">
 									<button class="btn btn-primary" type="button" id="save-btn" onclick="doSave()">保存</button>
-									<a class="btn btn-warning" href="${ctx}/console/contentManage/articleList?module=${module}&cid=${cid}">返回列表</a>
+									<a class="btn btn-warning" href="${ctx}/console/contentManage/list?module=${module}&cid=${cid}">返回列表</a>
 								</div>
 							</form>
 						</div>
@@ -101,7 +106,7 @@ function doSave() {
 	if ($('#ffrom').valid()) {
 		$('#cke-content').val(cke.getData());
 		$.ajax2({
-			url : "${ctx}/console/contentManage/doSaveArticle",
+			url : "${ctx}/console/contentManage/doSave",
 			data : $("#ffrom").serialize(),
 			btn : '#save-btn',
 			success : function(result) {

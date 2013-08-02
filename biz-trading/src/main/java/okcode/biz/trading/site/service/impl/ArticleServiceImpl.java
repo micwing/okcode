@@ -1,8 +1,10 @@
 package okcode.biz.trading.site.service.impl;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import okcode.biz.trading.enums.Module;
 import okcode.biz.trading.intf.ArticleService;
@@ -17,6 +19,7 @@ import okcode.framework.exception.ErrorCode;
 import okcode.service.standard.intf.CountService;
 import okcode.service.standard.model.Count;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -29,12 +32,10 @@ import org.springframework.stereotype.Service;
 public class ArticleServiceImpl implements ArticleService {
 	@Autowired
 	private CatalogDao catalogDao;
-	
 	@Autowired
 	private ArticleDao articleDao;
 	@Autowired
 	private SpecificDao specificDao;
-
 	@Autowired
 	private CountService countService;
 	
@@ -59,8 +60,18 @@ public class ArticleServiceImpl implements ArticleService {
 		//to save
 		if (module.ordinal() == Module.article.ordinal())
 			saveArticleModule(article, entity);
-		else if (module.ordinal() == Module.article.ordinal())
+		else if (module.ordinal() == Module.product.ordinal())
 			saveProductModule(article, entity);
+		else if (module.ordinal() == Module.image.ordinal())
+			saveImageModule(article, entity);
+		else if (module.ordinal() == Module.download.ordinal())
+			saveDownloadModule(article, entity);
+		else if (module.ordinal() == Module.exlink.ordinal())
+			saveExlinkModule(article, entity);
+		else if (module.ordinal() == Module.job.ordinal())
+			saveJobModule(article, entity);
+		else if (module.ordinal() == Module.message.ordinal())
+			saveMessageModule(article, entity);
 		return entity;
 	}
 	
@@ -82,6 +93,23 @@ public class ArticleServiceImpl implements ArticleService {
 	
 	private void saveProductModule(Article product, Article entity) {
 	}
+	
+	private void saveImageModule(Article product, Article entity) {
+	}
+	
+	private void saveDownloadModule(Article product, Article entity) {
+	}
+	
+	private void saveExlinkModule(Article product, Article entity) {
+	}
+	
+	private void saveJobModule(Article product, Article entity) {
+	}
+	
+	private void saveMessageModule(Article product, Article entity) {
+	}
+	
+	
 
 	@Override
 	public Article deleteArticle(Long articleId) {
@@ -92,17 +120,23 @@ public class ArticleServiceImpl implements ArticleService {
 		return article;
 	}
 	
-//	private void setClicks(List<Article> list) {
-//		if (!CollectionUtils.isEmpty(list)) {			
-//			List<String> ids = new ArrayList<String>();
-//			for (Article article : list)
-//				ids.add(article.getId()+"");
-//			Map<String, Count> counts = countService.findCounts(BizKeyValue.COUNT_ARTICLE_CLICKS.toString(), ids);
-//			for (Article article : list)
-//				article.setClicks(counts.get(article.getId()+"").getNum());
-//		}
-//	}
+	/*
+	 * 查询点击次数
+	 */
+	private void setClicks(List<Article> list) {
+		if (!CollectionUtils.isEmpty(list)) {			
+			List<String> ids = new ArrayList<String>();
+			for (Article article : list)
+				ids.add(article.getId()+"");
+			Map<String, Count> counts = countService.findCounts(BizKeyValue.COUNT_SERVICE_ARTICLE_CLICKS.toString(), ids);
+			for (Article article : list)
+				article.setClicks(counts.get(article.getId()+"").getNum());
+		}
+	}
 	
+	/*
+	 * 查询点击次数
+	 */
 	private void setClicks(Article article) {
 		if (article == null)
 			return;
@@ -120,21 +154,25 @@ public class ArticleServiceImpl implements ArticleService {
 
 	@Override
 	public List<Article> findByIds(Collection<Long> ids) {
-		return articleDao.findByIdInOrderByUpdateAtDesc(ids);
+		List<Article> articles = articleDao.findByIdInOrderByUpdateAtDesc(ids);
+		return articles;
 	}
 	
 	@Override
 	public List<Article> findByCatalogId(Collection<Long> catalogIds) {
-		return articleDao.findByCatalogIdInOrderByUpdateAtDesc(catalogIds);
+		List<Article> articles = articleDao.findByCatalogIdInOrderByUpdateAtDesc(catalogIds);
+		setClicks(articles);
+		return articles;
 	}
 
 	@Override
 	public Page<Article> list(Module module, Collection<Long> catalogIds,String key,Pageable pageable) {
-		List<Article> list = specificDao.listArticle(module, catalogIds, key, 
+		List<Article> articles = specificDao.listArticle(module, catalogIds, key, 
 				(pageable == null ? -1:pageable.getOffset()), 
 				(pageable == null ? -1:pageable.getPageSize()) );
+		setClicks(articles);
 		long total = specificDao.countArticle(module, catalogIds, key);
-		Page<Article> page = new PageImpl<Article>(list, pageable, total);
+		Page<Article> page = new PageImpl<Article>(articles, pageable, total);
 		return page;
 	}
 	

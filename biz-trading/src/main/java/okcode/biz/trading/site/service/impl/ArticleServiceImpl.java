@@ -18,10 +18,12 @@ import okcode.biz.trading.site.dao.SpecificDao;
 import okcode.biz.trading.util.BizKeyValue;
 import okcode.framework.exception.AppException;
 import okcode.framework.exception.ErrorCode;
+import okcode.framework.utils.StringUtil;
 import okcode.service.standard.intf.CountService;
 import okcode.service.standard.model.Count;
 
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -98,33 +100,210 @@ public class ArticleServiceImpl implements ArticleService {
 	
 	private void handleSaveProduct(ArticleDto product, Article entity) {
 		Map<String, String> attr = entity.getAttr() != null ? entity.getAttr() : new HashMap<String, String>();
-		attr.put(Article.ATTR_PRICE, product.getPrice());
-		attr.put(Article.ATTR_IMAGE_URL_1, product.getImageUrl1());
-		attr.put(Article.ATTR_IMAGE_URL_2, product.getImageUrl2());
-		attr.put(Article.ATTR_IMAGE_URL_3, product.getImageUrl3());
-		attr.put(Article.ATTR_IMAGE_URL_4, product.getImageUrl4());
-		attr.put(Article.ATTR_IMAGE_URL_5, product.getImageUrl5());
-		attr.put(Article.ATTR_IMAGE_URL_6, product.getImageUrl6());
-		attr.put(Article.ATTR_IMAGE_URL_7, product.getImageUrl7());
-		attr.put(Article.ATTR_IMAGE_URL_8, product.getImageUrl8());
-		attr.put(Article.ATTR_IMAGE_URL_9, product.getImageUrl9());
-		attr.put(Article.ATTR_IMAGE_URL_10, product.getImageUrl10());
+		if (!StringUtil.isEmpty(product.getPrice()))
+			attr.put(Article.ATTR_PRICE, product.getPrice());
+		else
+			attr.remove(Article.ATTR_PRICE);
+		
+		if (!StringUtils.isEmpty(product.getImageUrl1()))
+			attr.put(Article.ATTR_IMAGE_URL_1, product.getImageUrl1());
+		else 
+			attr.remove(Article.ATTR_IMAGE_URL_1);
+		
+		if (!StringUtils.isEmpty(product.getImageUrl2()))
+			attr.put(Article.ATTR_IMAGE_URL_2, product.getImageUrl2());
+		else 
+			attr.remove(Article.ATTR_IMAGE_URL_2);
+		
+		if (!StringUtils.isEmpty(product.getImageUrl3()))
+			attr.put(Article.ATTR_IMAGE_URL_3, product.getImageUrl3());
+		else 
+			attr.remove(Article.ATTR_IMAGE_URL_3);
+		
+		if (!StringUtils.isEmpty(product.getImageUrl4()))
+			attr.put(Article.ATTR_IMAGE_URL_4, product.getImageUrl4());
+		else 
+			attr.remove(Article.ATTR_IMAGE_URL_4);
+		
+		if (!StringUtils.isEmpty(product.getImageUrl5()))
+			attr.put(Article.ATTR_IMAGE_URL_5, product.getImageUrl5());
+		else 
+			attr.remove(Article.ATTR_IMAGE_URL_5);
+		
+		if (!StringUtils.isEmpty(product.getImageUrl6()))
+			attr.put(Article.ATTR_IMAGE_URL_6, product.getImageUrl6());
+		else 
+			attr.remove(Article.ATTR_IMAGE_URL_6);
+		
+		if (!StringUtils.isEmpty(product.getImageUrl7()))
+			attr.put(Article.ATTR_IMAGE_URL_7, product.getImageUrl7());
+		else 
+			attr.remove(Article.ATTR_IMAGE_URL_7);
+		
+		if (!StringUtils.isEmpty(product.getImageUrl8()))
+			attr.put(Article.ATTR_IMAGE_URL_8, product.getImageUrl8());
+		else 
+			attr.remove(Article.ATTR_IMAGE_URL_8);
+		
+		if (!StringUtils.isEmpty(product.getImageUrl9()))
+			attr.put(Article.ATTR_IMAGE_URL_9, product.getImageUrl9());
+		else 
+			attr.remove(Article.ATTR_IMAGE_URL_9);
+		
+		if (!StringUtils.isEmpty(product.getImageUrl10()))
+			attr.put(Article.ATTR_IMAGE_URL_10, product.getImageUrl10());
+		else 
+			attr.remove(Article.ATTR_IMAGE_URL_10);
+		
 		entity.setAttr(attr);
 	}
 	
-	private void handleSaveImage(ArticleDto product, Article entity) {
+	private void handleSaveImage(ArticleDto image, Article entity) {
+		Map<String, String> attr = entity.getAttr() != null ? entity.getAttr() : new HashMap<String, String>();
+		
+		if (!StringUtils.isEmpty(image.getImageUrl1()))
+			attr.put(Article.ATTR_IMAGE_URL_1, image.getImageUrl1());
+		else 
+			attr.remove(Article.ATTR_IMAGE_URL_1);
+		
+		if (!StringUtils.isEmpty(image.getImageUrl2()))
+			attr.put(Article.ATTR_IMAGE_URL_2, image.getImageUrl2());
+		else 
+			attr.remove(Article.ATTR_IMAGE_URL_2);
+		
+		if (!StringUtils.isEmpty(image.getImageUrl3()))
+			attr.put(Article.ATTR_IMAGE_URL_3, image.getImageUrl3());
+		else 
+			attr.remove(Article.ATTR_IMAGE_URL_3);
+		
+		if (!StringUtils.isEmpty(image.getImageUrl4()))
+			attr.put(Article.ATTR_IMAGE_URL_4, image.getImageUrl4());
+		else 
+			attr.remove(Article.ATTR_IMAGE_URL_4);
+		
+		if (!StringUtils.isEmpty(image.getImageUrl5()))
+			attr.put(Article.ATTR_IMAGE_URL_5, image.getImageUrl5());
+		else 
+			attr.remove(Article.ATTR_IMAGE_URL_5);
+		
+		if (!StringUtils.isEmpty(image.getImageUrl6()))
+			attr.put(Article.ATTR_IMAGE_URL_6, image.getImageUrl6());
+		else 
+			attr.remove(Article.ATTR_IMAGE_URL_6);
+		
+		if (!StringUtils.isEmpty(image.getImageUrl7()))
+			attr.put(Article.ATTR_IMAGE_URL_7, image.getImageUrl7());
+		else 
+			attr.remove(Article.ATTR_IMAGE_URL_7);
+		
+		if (!StringUtils.isEmpty(image.getImageUrl8()))
+			attr.put(Article.ATTR_IMAGE_URL_8, image.getImageUrl8());
+		else 
+			attr.remove(Article.ATTR_IMAGE_URL_8);
+		
+		if (!StringUtils.isEmpty(image.getImageUrl9()))
+			attr.put(Article.ATTR_IMAGE_URL_9, image.getImageUrl9());
+		else 
+			attr.remove(Article.ATTR_IMAGE_URL_9);
+		
+		if (!StringUtils.isEmpty(image.getImageUrl10()))
+			attr.put(Article.ATTR_IMAGE_URL_10, image.getImageUrl10());
+		else 
+			attr.remove(Article.ATTR_IMAGE_URL_10);
+		
+		entity.setAttr(attr);
 	}
 	
-	private void handleSaveDownload(ArticleDto product, Article entity) {
+	private void handleSaveDownload(ArticleDto download, Article entity) {
+		Map<String, String> attr = entity.getAttr() != null ? entity.getAttr() : new HashMap<String, String>();
+		
+		if (!StringUtil.isEmpty(download.getAttrFile()))
+			attr.put(Article.ATTR_ATTR_FILE, download.getAttrFile());
+		else
+			attr.remove(Article.ATTR_ATTR_FILE);
+		
+		if (!StringUtils.isEmpty(download.getImageUrl1()))
+			attr.put(Article.ATTR_IMAGE_URL_1, download.getImageUrl1());
+		else 
+			attr.remove(Article.ATTR_IMAGE_URL_1);
+		
+		if (!StringUtils.isEmpty(download.getImageUrl2()))
+			attr.put(Article.ATTR_IMAGE_URL_2, download.getImageUrl2());
+		else 
+			attr.remove(Article.ATTR_IMAGE_URL_2);
+		
+		if (!StringUtils.isEmpty(download.getImageUrl3()))
+			attr.put(Article.ATTR_IMAGE_URL_3, download.getImageUrl3());
+		else 
+			attr.remove(Article.ATTR_IMAGE_URL_3);
+		
+		if (!StringUtils.isEmpty(download.getImageUrl4()))
+			attr.put(Article.ATTR_IMAGE_URL_4, download.getImageUrl4());
+		else 
+			attr.remove(Article.ATTR_IMAGE_URL_4);
+		
+		if (!StringUtils.isEmpty(download.getImageUrl5()))
+			attr.put(Article.ATTR_IMAGE_URL_5, download.getImageUrl5());
+		else 
+			attr.remove(Article.ATTR_IMAGE_URL_5);
+		
+		if (!StringUtils.isEmpty(download.getImageUrl6()))
+			attr.put(Article.ATTR_IMAGE_URL_6, download.getImageUrl6());
+		else 
+			attr.remove(Article.ATTR_IMAGE_URL_6);
+		
+		if (!StringUtils.isEmpty(download.getImageUrl7()))
+			attr.put(Article.ATTR_IMAGE_URL_7, download.getImageUrl7());
+		else 
+			attr.remove(Article.ATTR_IMAGE_URL_7);
+		
+		if (!StringUtils.isEmpty(download.getImageUrl8()))
+			attr.put(Article.ATTR_IMAGE_URL_8, download.getImageUrl8());
+		else 
+			attr.remove(Article.ATTR_IMAGE_URL_8);
+		
+		if (!StringUtils.isEmpty(download.getImageUrl9()))
+			attr.put(Article.ATTR_IMAGE_URL_9, download.getImageUrl9());
+		else 
+			attr.remove(Article.ATTR_IMAGE_URL_9);
+		
+		if (!StringUtils.isEmpty(download.getImageUrl10()))
+			attr.put(Article.ATTR_IMAGE_URL_10, download.getImageUrl10());
+		else 
+			attr.remove(Article.ATTR_IMAGE_URL_10);
+		
+		entity.setAttr(attr);
 	}
 	
-	private void handleSaveExlink(ArticleDto product, Article entity) {
+	private void handleSaveJob(ArticleDto job, Article entity) {
+		Map<String, String> attr = entity.getAttr() != null ? entity.getAttr() : new HashMap<String, String>();
+		if (!StringUtil.isEmpty(job.getPlace()))
+			attr.put(Article.ATTR_PLACE, job.getPlace());
+		else
+			attr.remove(Article.ATTR_PLACE);
+		
+		if (!StringUtil.isEmpty(job.getCount()))
+			attr.put(Article.ATTR_COUNT, job.getCount());
+		else
+			attr.remove(Article.ATTR_COUNT);
+		
+		if (!StringUtil.isEmpty(job.getDeal()))
+			attr.put(Article.ATTR_DEAL, job.getDeal());
+		else
+			attr.remove(Article.ATTR_DEAL);
+		
+		if (!StringUtil.isEmpty(job.getEnableDays()))
+			attr.put(Article.ATTR_ENABLEDAYS, job.getEnableDays());
+		else
+			attr.remove(Article.ATTR_ENABLEDAYS);
+		
+		entity.setAttr(attr);
 	}
 	
-	private void handleSaveJob(ArticleDto product, Article entity) {
+	private void handleSaveExlink(ArticleDto exlink, Article entity) {
 	}
 	
-	private void handleSaveMessage(ArticleDto product, Article entity) {
+	private void handleSaveMessage(ArticleDto message, Article entity) {
 	}
 	
 	

@@ -35,15 +35,22 @@ public class Article implements Serializable {
 	
 	public static final String ATTR_PRICE = "price";
 	public static final String ATTR_IMAGE_URL_1 = "imageUrl1";
-	public static final String ATTR_IMAGE_URL_2 = "imageUrl1";
-	public static final String ATTR_IMAGE_URL_3 = "imageUrl1";
-	public static final String ATTR_IMAGE_URL_4 = "imageUrl1";
-	public static final String ATTR_IMAGE_URL_5 = "imageUrl1";
+	public static final String ATTR_IMAGE_URL_2 = "imageUrl2";
+	public static final String ATTR_IMAGE_URL_3 = "imageUrl3";
+	public static final String ATTR_IMAGE_URL_4 = "imageUrl4";
+	public static final String ATTR_IMAGE_URL_5 = "imageUrl5";
 	public static final String ATTR_IMAGE_URL_6 = "imageUrl6";
 	public static final String ATTR_IMAGE_URL_7 = "imageUrl7";
 	public static final String ATTR_IMAGE_URL_8 = "imageUrl8";
 	public static final String ATTR_IMAGE_URL_9 = "imageUrl9";
 	public static final String ATTR_IMAGE_URL_10 = "imageUrl10";
+	
+	public static final String ATTR_ATTR_FILE = "attrFile";
+	
+	public static final String ATTR_PLACE = "place";
+	public static final String ATTR_DEAL = "deal";
+	public static final String ATTR_COUNT = "count";
+	public static final String ATTR_ENABLEDAYS = "enableDays";
 	
 	@Transient
 	private Long catalogId;

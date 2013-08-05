@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import okcode.biz.trading.enums.Module;
 import okcode.biz.trading.intf.ArticleService;
 import okcode.biz.trading.intf.CatalogService;
 import okcode.biz.trading.model.Article;
@@ -72,7 +73,7 @@ public class PortalArticleController extends BaseController {
 			//TODO size 10
 			articlePage = articleService.list(catalog.getModule(), cids, null, page);
 		}
-		ModelAndView mav = new ModelAndView(PORTAL+"article/list");
+		ModelAndView mav = new ModelAndView();
 		mav.addObject("articleList", articlePage == null ? null : articlePage.getContent());
 		mav.addObject("page", articlePage);
 		mav.setViewName(PORTAL+"article/list");
@@ -85,7 +86,10 @@ public class PortalArticleController extends BaseController {
 		Article article = articleService.findById(aid);
 		if (article == null)
 			throw new AppException(ErrorCode.ENTITY_NOT_FOUND, "内容未找到！");
-		ModelAndView mav = new ModelAndView(PORTAL+"article/detail");
+		ModelAndView mav = new ModelAndView();
+		Module module = article.getCatalog().getModule();
+		if (module.ordinal() == Module.article.ordinal())
+			mav.setViewName(PORTAL+"article/"+module+"-detail");
 		mav.addObject("article", article);
 		return mav;
 	}

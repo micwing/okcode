@@ -77,19 +77,6 @@
 										 value="<fmt:formatDate value="${article.updateAt}" pattern="yyyy-MM-dd" />" />
 									</div>	
 								</div>
-								
-								<c:if test="${module == 'article'}">
-								</c:if>
-								<c:if test="${module == 'product'}">
-									<jsp:include page="inc-product-detail-form.jsp"></jsp:include>
-								</c:if>
-								<c:if test="${module == 'image'}">
-									<jsp:include page="inc-image-detail-form.jsp" />
-								</c:if>
-								<c:if test="${module == 'download'}">
-									<jsp:include page="inc-download-detail-form.jsp" />
-								</c:if>
-								
 								<div class="control-group">
 									<label class="control-label" for="content">详细内容</label>
 									<div class="controls">

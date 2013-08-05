@@ -35,16 +35,10 @@
 									</div>
 								</div>
 								<div class="control-group">
-									<label class="control-label" for="title">标题</label>
+									<label class="control-label" for="title">职位名称</label>
 									<div class="controls">
 										<input type="text" name="title" value="${article.title}" />
 										<input type="hidden" name="id" value="${article.id}" />
-									</div>	
-								</div>
-								<div class="control-group">
-									<label class="control-label" for="subTitle">小标题</label>
-									<div class="controls">
-										<input type="text" name="subTitle" value="${article.subTitle}" />
 									</div>	
 								</div>
 								<div class="control-group">
@@ -54,18 +48,30 @@
 											<input type="checkbox" name="topFlag" value="true" ${article.topFlag?'checked=checked':''}/>
 											勾选后列表页显示在最顶部
 										</label>
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="place">工作地点</label>
+									<div class="controls">
+										<input type="text" name="place" value="${article.attr.place}" />
 									</div>	
 								</div>
 								<div class="control-group">
-									<label class="control-label" for="clicks">点击次数</label>
+									<label class="control-label" for="deal">工资待遇</label>
 									<div class="controls">
-										<input type="text" name="clicks" value="${article.clicks}" />
+										<input type="text" name="deal" value="${article.attr.deal}" />
 									</div>	
 								</div>
 								<div class="control-group">
-									<label class="control-label" for="author">作者</label>
+									<label class="control-label" for="count">招聘人数</label>
 									<div class="controls">
-										<input type="text" name="author" value="${article.author}" />
+										<input type="text" name="count" value="${article.attr.count}" />
+									</div>	
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="enableDays">有效时间</label>
+									<div class="controls">
+										<input type="text" name="enableDays" value="${article.attr.enableDays}" />
 									</div>	
 								</div>
 								<div class="control-group">
@@ -77,19 +83,6 @@
 										 value="<fmt:formatDate value="${article.updateAt}" pattern="yyyy-MM-dd" />" />
 									</div>	
 								</div>
-								
-								<c:if test="${module == 'article'}">
-								</c:if>
-								<c:if test="${module == 'product'}">
-									<jsp:include page="inc-product-detail-form.jsp"></jsp:include>
-								</c:if>
-								<c:if test="${module == 'image'}">
-									<jsp:include page="inc-image-detail-form.jsp" />
-								</c:if>
-								<c:if test="${module == 'download'}">
-									<jsp:include page="inc-download-detail-form.jsp" />
-								</c:if>
-								
 								<div class="control-group">
 									<label class="control-label" for="content">详细内容</label>
 									<div class="controls">

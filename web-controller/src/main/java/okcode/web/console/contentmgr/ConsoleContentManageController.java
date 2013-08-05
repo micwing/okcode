@@ -46,7 +46,19 @@ public class ConsoleContentManageController extends BaseController {
 	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView list(Module module, Long cid, Pageable page) {
-		ModelAndView mav = new ModelAndView(CONSOLE + "contentManage/main-list");
+		ModelAndView mav = new ModelAndView();
+		if (module.ordinal() == Module.article.ordinal()
+				|| module.ordinal() == Module.product.ordinal()
+				|| module.ordinal() == Module.image.ordinal()
+				|| module.ordinal() == Module.download.ordinal())
+			mav.setViewName(CONSOLE + "contentManage/main-list");
+		else if (module.ordinal() == Module.message.ordinal()
+				|| module.ordinal() == Module.job.ordinal()
+				|| module.ordinal() == Module.exlink.ordinal())
+			mav.setViewName(CONSOLE + "contentManage/"+module+"-list");
+		else
+			throw new AppException(ErrorCode.SERVER_ERROR);
+		
 		Page<Article> articlePage = articleService.list(module, cid==null?null:Collections.singleton(cid), null, page);
 		mav.addObject("catalogs", catalogService.findByModule(module));
 		mav.addObject("cid", cid);
@@ -68,7 +80,19 @@ public class ConsoleContentManageController extends BaseController {
 				throw new AppException(ErrorCode.MISS_PARAM);
 		}
 			
-		ModelAndView mav = new ModelAndView(CONSOLE + "contentManage/main-detail");
+		ModelAndView mav = new ModelAndView();
+		if (module.ordinal() == Module.article.ordinal()
+				|| module.ordinal() == Module.product.ordinal()
+				|| module.ordinal() == Module.image.ordinal()
+				|| module.ordinal() == Module.download.ordinal())
+			mav.setViewName(CONSOLE + "contentManage/main-detail");
+		else if (module.ordinal() == Module.message.ordinal()
+				|| module.ordinal() == Module.job.ordinal()
+				|| module.ordinal() == Module.exlink.ordinal())
+			mav.setViewName(CONSOLE + "contentManage/"+module+"-detail");
+		else
+			throw new AppException(ErrorCode.SERVER_ERROR);
+		
 		mav.addObject("catalogs", catalogService.findByModule(module));
 		mav.addObject("cid", cid);
 		mav.addObject("module", module);

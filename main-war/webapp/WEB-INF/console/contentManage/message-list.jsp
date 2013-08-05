@@ -90,3 +90,22 @@
 		</div>
 	</div>
 </div>
+<script type="text/javascript">
+function doDelete(aid) {
+	if (!window.confirm("您确定要删除吗？")) {
+		return;
+	}
+	$.ajax2({
+		url : "${ctx}/console/contentManage/doDelete",
+		data : {aid:aid},
+		btn : '#del-btn-'+aid,
+		success : function(result) {
+			if (result.code == 0) {
+				setTimeout(function() {
+					window.location.href='${ctx}/console/contentManage/list?module=${module}&cid=${cid}';
+				},1000);
+			}
+		}
+	});
+}
+</script>

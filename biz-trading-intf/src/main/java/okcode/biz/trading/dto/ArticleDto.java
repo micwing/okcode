@@ -31,6 +31,44 @@ public class ArticleDto {
 	private String imageUrl8;
 	private String imageUrl9;
 	private String imageUrl10;
+	
+	private String attrFile;
+	
+	private String place;
+	private String deal;
+	private String count;
+	private String enableDays;
+	
+	public String getPlace() {
+		return place;
+	}
+	public void setPlace(String place) {
+		this.place = place;
+	}
+	public String getDeal() {
+		return deal;
+	}
+	public void setDeal(String deal) {
+		this.deal = deal;
+	}
+	public String getCount() {
+		return count;
+	}
+	public void setCount(String count) {
+		this.count = count;
+	}
+	public String getEnableDays() {
+		return enableDays;
+	}
+	public void setEnableDays(String enableDays) {
+		this.enableDays = enableDays;
+	}
+	public String getAttrFile() {
+		return attrFile;
+	}
+	public void setAttrFile(String attrFile) {
+		this.attrFile = attrFile;
+	}
 	public Long getId() {
 		return id;
 	}

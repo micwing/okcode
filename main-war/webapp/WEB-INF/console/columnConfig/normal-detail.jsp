@@ -157,12 +157,6 @@
 												/>
 											栏目内容列表
 										</label>
-										<label class="radio">
-											<input type="radio" name="clickDisplay" value="SUB_CONTENT_LIST"
-												${catalog.clickDisplay == 'SUB_CONTENT_LIST' ? 'checked=checked':''}
-												/>
-											子栏目内容列表
-										</label>
 										<span class="help-block">选择当栏目被点击后显示内容页或者列表页</span>
 									</div>
 								</div>

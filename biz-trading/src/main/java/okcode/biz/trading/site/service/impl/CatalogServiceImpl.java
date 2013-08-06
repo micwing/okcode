@@ -22,7 +22,6 @@ import okcode.framework.exception.AppException;
 import okcode.framework.exception.ErrorCode;
 
 import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -87,30 +86,7 @@ public class CatalogServiceImpl implements CatalogService {
 	}
 	
 	private Catalog handleSaveJob(Catalog catalog, Catalog entity) {
-//		if (entity.getLevel().ordinal() == CatalogLevel.FIRST.ordinal()) {
-//			if (entity.getId() == null || entity.getId() == 0) {
-//				entity.setClickDisplay(CatalogClickDisplay.CONTENT_LIST);
-//			} else {
-//				List<Catalog> subCatalogs = findByParent(entity.getId());
-//				if (CollectionUtils.isEmpty(subCatalogs))
-//					entity.setClickDisplay(CatalogClickDisplay.CONTENT_LIST);
-//				else
-//					entity.setClickDisplay(CatalogClickDisplay.SUB_CONTENT_LIST);
-//			}
-//		} else if (entity.getLevel().ordinal() == CatalogLevel.SECOND.ordinal()) {
-//			if (entity.getId() == null || entity.getId() == 0) {
-//				entity.setClickDisplay(CatalogClickDisplay.CONTENT_LIST);
-//			} else {
-//				List<Catalog> subCatalogs = findByParent(entity.getId());
-//				if (CollectionUtils.isEmpty(subCatalogs))
-//					entity.setClickDisplay(CatalogClickDisplay.CONTENT_LIST);
-//				else
-//					entity.setClickDisplay(CatalogClickDisplay.SUB_CONTENT_LIST);
-//			}
-//			
-//		} else if (entity.getLevel().ordinal() == CatalogLevel.THIRD.ordinal()) {
-//			entity.setClickDisplay(CatalogClickDisplay.CONTENT_LIST);
-//		}
+		entity.setClickDisplay(CatalogClickDisplay.CONTENT_LIST);
 		return entity;
 	}
 	
@@ -151,6 +127,21 @@ public class CatalogServiceImpl implements CatalogService {
 	@Override
 	public List<Catalog> findByParent(Long pid) {
 		return catalogDao.findByPidInOrderByRankAsc(Collections.singleton(pid));
+	}
+	
+	@Override
+	public List<Catalog> findAllByParent(Long pid) {
+		List<Catalog> catalogs = new ArrayList<Catalog>();
+		List<Catalog> subs = catalogDao.findByPidInOrderByRankAsc(Collections.singleton(pid));
+		if (!CollectionUtils.isEmpty(subs)) {
+			catalogs.addAll(subs);
+			for (Catalog c : subs) {
+				if (c.getLevel().ordinal() == CatalogLevel.THIRD.ordinal())
+					continue;
+				catalogs.addAll(findAllByParent(c.getId()));
+			}
+		}
+		return catalogs;
 	}
 	
 	@Override

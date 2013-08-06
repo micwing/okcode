@@ -31,6 +31,8 @@ public interface CatalogService {
 	
 	List<Catalog> findByParent(@NotNull @Min(1) Long catalogId);
 	
+	List<Catalog> findAllByParent(@NotNull @Min(1) Long catalogId);
+	
 	List<Catalog> findByModule(@NotNull Module module);
 	
 	List<Catalog> findAll();

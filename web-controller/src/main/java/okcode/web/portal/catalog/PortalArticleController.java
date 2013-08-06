@@ -1,6 +1,6 @@
 package okcode.web.portal.catalog;
 
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -14,7 +14,6 @@ import okcode.framework.exception.AppException;
 import okcode.framework.exception.ErrorCode;
 import okcode.web.base.BaseController;
 
-import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -45,9 +44,15 @@ public class PortalArticleController extends BaseController {
 		Catalog catalog = catalogService.findById(cid);
 		if (catalog == null)
 			throw new AppException(ErrorCode.ENTITY_NOT_FOUND, "栏目未找到！");
+		List<Catalog> allCatalogs = new ArrayList<Catalog>();
+		allCatalogs.add(catalog);
+		allCatalogs.addAll(catalogService.findAllByParent(catalog.getId()));
 		
+		Set<Long> ids = new HashSet<Long>();
+		for (Catalog c : allCatalogs)
+			ids.add(c.getId());
 		//TODO size 10
-		Page<Article> articlePage = articleService.list(catalog.getModule(), Collections.singleton(catalog.getId()),
+		Page<Article> articlePage = articleService.list(catalog.getModule(), ids,
 				null, page);
 		
 		ModelAndView mav = new ModelAndView(PORTAL+"article/list");
@@ -55,29 +60,6 @@ public class PortalArticleController extends BaseController {
 		mav.addObject("page", articlePage);
 		mav.addObject("catalog", catalog);
 		mav.setViewName(PORTAL+"article/"+catalog.getModule()+"-list");
-		return mav;
-	}
-	
-	@RequestMapping(value = "/sublist/{cid}", method = RequestMethod.GET)
-	public ModelAndView catalogSubList(@PathVariable("cid") Long cid, Pageable page) {
-		Catalog catalog = catalogService.findById(cid);
-		if (catalog == null)
-			throw new AppException(ErrorCode.ENTITY_NOT_FOUND, "栏目未找到！");
-		
-		List<Catalog> catalogs = catalogService.findByParent(catalog.getId());
-		Page<Article> articlePage = null;
-		if (!CollectionUtils.isEmpty(catalogs)) {
-			Set<Long> cids = new HashSet<Long>();
-			for (Catalog ca : catalogs)
-				cids.add(ca.getId());
-			//TODO size 10
-			articlePage = articleService.list(catalog.getModule(), cids, null, page);
-		}
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("articleList", articlePage == null ? null : articlePage.getContent());
-		mav.addObject("page", articlePage);
-		mav.setViewName(PORTAL+"article/list");
-		
 		return mav;
 	}
 	

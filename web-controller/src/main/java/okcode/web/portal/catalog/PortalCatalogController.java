@@ -68,11 +68,6 @@ public class PortalCatalogController extends BaseController {
 			
 			mav.setViewName("forward:/portal/article/list/"+catalog.getId());
 			
-		} else if (catalog.getClickDisplay().ordinal() == CatalogClickDisplay.SUB_CONTENT_LIST.ordinal()) {
-			//显示子栏目内容列表
-			
-			mav.setViewName("forward:/portal/article/sublist/"+catalog.getId());
-			
 		}
 		return mav;
 	}

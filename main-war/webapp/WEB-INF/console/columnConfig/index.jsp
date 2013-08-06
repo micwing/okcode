@@ -61,7 +61,7 @@
 									    <div class="btn-group">
 									    <a class="btn btn-small" href="${ctx}/console/columnConfig/modify?cid=${firstItem.catalog.id}">修改</a>
 									    <c:if test="${(firstItem.catalog.module != 'sitemap')&&(firstItem.catalog.module != 'search')&&(firstItem.catalog.module != 'outlink')}">
-									    <a class="btn btn-small" href="#myModal" data-toggle="modal" onclick="$('#module option[value=${firstItem.catalog.module}]').attr('selected',true);$('#pid').val('${firstItem.catalog.id}');" >添加子栏目</a>
+									    <a class="btn btn-small" href="#myModal" data-toggle="modal" onclick="$('#module-slt option[value=${firstItem.catalog.module}]').attr('selected', true);$('#pid').val('${firstItem.catalog.id}');" >添加子栏目</a>
 									    </c:if>
 									    <button class="btn btn-danger btn-small btn-del-${firstItem.catalog.id}" onclick="doDelete(${firstItem.catalog.id});">删除</button>
 									    </div>
@@ -97,7 +97,7 @@
 										    <div class="btn-group">
 										    <a class="btn btn-small" href="${ctx}/console/columnConfig/modify?cid=${secondItem.catalog.id}">修改</a>
 										    <c:if test="${(secondItem.catalog.module != 'sitemap') && (secondItem.catalog.module != 'search') && (secondItem.catalog.module != 'outlink')}">
-										    <a class="btn btn-small" href="#myModal" data-toggle="modal" onclick="$('#module option[value=${secondItem.catalog.module}]').attr('selected',true);$('#pid').val('${secondItem.catalog.id}');" >添加子栏目</a>
+										    <a class="btn btn-small" href="#myModal" data-toggle="modal" onclick="$('#module-slt option[value=${secondItem.catalog.module}]').attr('selected',true);$('#pid').val('${secondItem.catalog.id}');" >添加子栏目</a>
 										    </c:if>
 										    <button class="btn btn-danger btn-small btn-del-${secondItem.catalog.id}" onclick="doDelete(${secondItem.catalog.id});">删除</button>
 										    </div>
@@ -145,7 +145,7 @@
 		<h3>您要添加那种模块类型的栏目?</h3>
 	</div>
 	<div class="modal-body">
-		<select id="module">
+		<select id="module-slt">
 			<% for (Module m : Module.values()) { %>
 			<option value="<%=m.toString()%>"><%=m.getLabel()%></option>
 			<% } %>
@@ -154,7 +154,7 @@
 	</div>
 	<div class="modal-footer">
 		<a class="btn" data-dismiss="modal">关闭</a>
-		<a href="javascript:;" class="btn btn-primary" onclick="window.location.href='${ctx}/console/columnConfig/add?module='+$('#module').val()+'&pid='+$('#pid').val()">确定</a>
+		<a href="javascript:;" class="btn btn-primary" onclick="window.location.href='${ctx}/console/columnConfig/add?module='+$('#module-slt').val()+'&pid='+$('#pid').val()">确定</a>
 	</div>
 </div>
 <script type="text/javascript">

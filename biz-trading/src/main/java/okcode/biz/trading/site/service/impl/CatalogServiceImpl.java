@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 import okcode.biz.trading.dto.CatalogItem;
+import okcode.biz.trading.enums.CatalogClickDisplay;
 import okcode.biz.trading.enums.CatalogLevel;
 import okcode.biz.trading.enums.CatalogNavDisplay;
 import okcode.biz.trading.enums.Module;
@@ -21,6 +22,7 @@ import okcode.framework.exception.AppException;
 import okcode.framework.exception.ErrorCode;
 
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -76,12 +78,47 @@ public class CatalogServiceImpl implements CatalogService {
 		entity.setSubTitle(catalog.getSubTitle());
 		entity.setTitle(catalog.getTitle());
 		
-		if (entity.getModule().ordinal() == Module.outlink.ordinal()) {
-			if (entity.getAttributes() == null)
-				entity.setAttributes(new HashMap<String, String>());
-			entity.getAttributes().put(Catalog.ATTR_KEY_OUTLINK_URL, catalog.getOutlinkUrl());
+		if (entity.getModule().ordinal() == Module.job.ordinal()) {
+			handleSaveJob(catalog, entity);
+		} else if (entity.getModule().ordinal() == Module.outlink.ordinal()) {
+			handleSaveOutlink(catalog, entity);
 		}
 		return catalogDao.save(entity);
+	}
+	
+	private Catalog handleSaveJob(Catalog catalog, Catalog entity) {
+//		if (entity.getLevel().ordinal() == CatalogLevel.FIRST.ordinal()) {
+//			if (entity.getId() == null || entity.getId() == 0) {
+//				entity.setClickDisplay(CatalogClickDisplay.CONTENT_LIST);
+//			} else {
+//				List<Catalog> subCatalogs = findByParent(entity.getId());
+//				if (CollectionUtils.isEmpty(subCatalogs))
+//					entity.setClickDisplay(CatalogClickDisplay.CONTENT_LIST);
+//				else
+//					entity.setClickDisplay(CatalogClickDisplay.SUB_CONTENT_LIST);
+//			}
+//		} else if (entity.getLevel().ordinal() == CatalogLevel.SECOND.ordinal()) {
+//			if (entity.getId() == null || entity.getId() == 0) {
+//				entity.setClickDisplay(CatalogClickDisplay.CONTENT_LIST);
+//			} else {
+//				List<Catalog> subCatalogs = findByParent(entity.getId());
+//				if (CollectionUtils.isEmpty(subCatalogs))
+//					entity.setClickDisplay(CatalogClickDisplay.CONTENT_LIST);
+//				else
+//					entity.setClickDisplay(CatalogClickDisplay.SUB_CONTENT_LIST);
+//			}
+//			
+//		} else if (entity.getLevel().ordinal() == CatalogLevel.THIRD.ordinal()) {
+//			entity.setClickDisplay(CatalogClickDisplay.CONTENT_LIST);
+//		}
+		return entity;
+	}
+	
+	private Catalog handleSaveOutlink(Catalog catalog, Catalog entity) {
+		if (entity.getAttributes() == null)
+			entity.setAttributes(new HashMap<String, String>());
+		entity.getAttributes().put(Catalog.ATTR_KEY_OUTLINK_URL, catalog.getOutlinkUrl());
+		return entity;
 	}
 	
 	@Override

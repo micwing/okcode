@@ -54,7 +54,7 @@ public class PortalArticleController extends BaseController {
 		mav.addObject("articleList", articlePage.getContent());
 		mav.addObject("page", articlePage);
 		mav.addObject("catalog", catalog);
-		mav.setViewName(PORTAL+"article/list");
+		mav.setViewName(PORTAL+"article/"+catalog.getModule()+"-list");
 		return mav;
 	}
 	
@@ -88,8 +88,7 @@ public class PortalArticleController extends BaseController {
 			throw new AppException(ErrorCode.ENTITY_NOT_FOUND, "内容未找到！");
 		ModelAndView mav = new ModelAndView();
 		Module module = article.getCatalog().getModule();
-		if (module.ordinal() == Module.article.ordinal())
-			mav.setViewName(PORTAL+"article/"+module+"-detail");
+		mav.setViewName(PORTAL+"article/"+module+"-detail");
 		mav.addObject("article", article);
 		return mav;
 	}

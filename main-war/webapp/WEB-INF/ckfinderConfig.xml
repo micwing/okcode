@@ -1,10 +1,7 @@
 <config>
 	<enabled>true</enabled>
-	<baseDir>D:\develop\workspace-mic\.metadata\.plugins\org.eclipse.wst.server.core\tmp2\wtpwebapps\main-war\asset\upload\</baseDir> 
-	<!-- 
-	<baseDir>D:\develop\workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\main-war\asset\upload\</baseDir>
-	-->
-	<baseURL>/asset/upload/</baseURL>
+	<baseDir>D:\develop\upload\</baseDir> 
+	<baseURL>/portal/upload/</baseURL>
 	<licenseKey></licenseKey>
 	<licenseName></licenseName>
 	<imgWidth>1600</imgWidth>
@@ -69,8 +66,8 @@
 		<url>%BASE_URL%_thumbs/</url>
 		<directory>%BASE_DIR%_thumbs</directory>
 		<directAccess>false</directAccess>
-		<maxHeight>100</maxHeight>
-		<maxWidth>100</maxWidth>
+		<maxHeight>140</maxHeight>
+		<maxWidth>220</maxWidth>
 		<quality>80</quality>
 	</thumbs>
 	<plugins>

@@ -35,10 +35,10 @@
                                         <li class="comments"><p><i class="icon-comments-alt"></i><span>2 comments</span></p></li>
                                     </ul>
                                 </div>
-                                <ul class="pager">
+                                <!-- <ul class="pager">
                                     <li class="previous"><a href="#">&larr; 上一篇</a></li>
                                     <li class="next"><a href="#">下一篇 &rarr;</a></li>
-                                </ul>
+                                </ul> -->
                                 <hr>
                                 
                                 <div class="post-socials">
@@ -62,7 +62,7 @@
                                 </div>
                                 <hr>
                                 
-                                <div class="comments">
+                                <!-- <div class="comments">
                                     <h2>评论</h2>                                                                        
                                     <div class="comment-object">
                                         <div class="row show-grid comment-details">
@@ -91,9 +91,9 @@
                                             </table>
                                         </div>
                                     </div>                                                                                                                                              
-                                </div>
+                                </div> -->
                                 
-                                <div class="reply-form">                                    
+                                <!-- <div class="reply-form">                                    
                                 <div class="row show-grid">
                                     <h2 class="offset1">提交评论</h2>
                                     <form id="validForm">
@@ -129,7 +129,7 @@
                                         </div>
                                     </form>
                                 </div>
-                                </div>
+                                </div> -->
                                
                             </div>
                         </div>

@@ -17,6 +17,7 @@ import okcode.biz.trading.enums.CatalogNavDisplay;
 import okcode.biz.trading.enums.Module;
 import okcode.biz.trading.intf.CatalogService;
 import okcode.biz.trading.model.Catalog;
+import okcode.biz.trading.site.dao.ArticleDao;
 import okcode.biz.trading.site.dao.CatalogDao;
 import okcode.framework.exception.AppException;
 import okcode.framework.exception.ErrorCode;
@@ -30,6 +31,8 @@ import org.springframework.stereotype.Service;
 public class CatalogServiceImpl implements CatalogService {
 	@Autowired
 	private CatalogDao catalogDao;
+	@Autowired
+	private ArticleDao articleDao;
 	
 	private CatalogLevel getSetLevel(Catalog catalog) {
 		if (catalog.getPid() != null && catalog.getPid() > 0) {
@@ -100,10 +103,14 @@ public class CatalogServiceImpl implements CatalogService {
 	@Override
 	public Catalog deleteCatalog(Long catalogId) {
 		Catalog catalog = catalogDao.findOne(catalogId);
+		if (catalog == null)
+			throw new AppException(ErrorCode.ENTITY_NOT_FOUND, "栏目不存在！");
+		
 		if (!CollectionUtils.isEmpty(findByParent(catalogId)))
 			throw new AppException(ErrorCode.UN_SUPPORTED, "该栏目下存在子栏目，请先删除子栏目后再试！");
 		
-		//TODO 判断内容是否还有内容
+		if (!CollectionUtils.isEmpty(articleDao.findByCatalogIdInOrderByUpdateAtDesc(Collections.singleton(catalogId)) ))
+			throw new AppException(ErrorCode.UN_SUPPORTED, "该栏目下还有内容，请先删除内容后再试！");
 		
 		catalogDao.delete(catalog);
 		return catalog;

@@ -5,95 +5,46 @@
 	<a href="${ctx}/console/home"><i class="icon-home"></i> 首页</a>
 	<a href="#"><i class="icon-cog"></i> 系统设置</a>
 	<a href="#">图片设置</a>
-	<a class="current" href="#">图片通用设置</a>
+	<a class="current" href="#">图片设置</a>
 </div>
 <div class="container-fluid">
 	<div class="row-fluid">
 		<div class="span12">
 			<div class="widget-box">
 				<div class="widget-title">
-					<ul class="nav nav-tabs">
-						<li class="active">
-						<a href="${ctx}/console/imageConfig">图片通用设置</a>
-						</li>
-						<li class="">
-						<a href="${ctx}/console/imageConfig/watermarkConfig">图片水印设置</a>
-						</li>
-					</ul>
+					<span class="icon">
+					<i class="icon icon-cog"></i>
+					</span>
+					<h5>图片设置</h5>
 				</div>
 				<div class="widget-content">
 					<div class="row-fluid">
 						<div class="span8">
 						
-							<form class="form-horizontal" method="get" action="#">
+							<form id="fform" class="form-horizontal" method="get" action="#">
 								<div class="control-group">
-									<label class="control-label" for="">自动删除图片</label>
+									<label class="control-label" for=""><span class="red">*</span> 产品模块图片展示</label>
 									<div class="controls">
-										<label class="checkbox">
-										<input type="checkbox" name="">
-										开启后删除信息时将自动删除相应图片
-										</label>
-									</div>	
-								</div>
-								<div class="control-group">
-									<label class="control-label" for="">自动生成缩略图</label>
-									<div class="controls">
-										<label class="checkbox">
-										<input type="checkbox" name="">
-										开启后添加大图时将自动生成缩略图
-										</label>
-									</div>
-								</div>
-								<div class="control-group">
-									<label class="control-label" for="">自动重命名</label>
-									<div class="controls">
-										<label class="checkbox">
-										<input type="checkbox" name="" checked="checked">
-										对上传的文件名自动进行重名名
-										</label>
-										<span class="help-block">建议勾选</span>
-									</div>	
-								</div>
-								<div class="control-group">
-									<label class="control-label" for="">缩略图生成方式</label>
-									<div class="controls">
-										<label class="radio">
-										<input type="radio" checked="checked" value="" name="xxx">
-										自动拉伸
-										</label>
-										<label class="radio">
-										<input type="radio" value="" name="xxx">
-										自动留白
-										</label>
-										<label class="radio">
-										<input type="radio" value="" name="xxx">
-										自动裁减
-										</label>
-									</div>
-								</div>
-								<div class="control-group">
-									<label class="control-label" for=""><span class="red">*</span> 产品模块</label>
-									<div class="controls">
-										<input type="text" name="" value="" style="width: 80px !important"> X <input type="text" name="" value="" style="width: 80px !important">
+										<input type="text" name="productImageWidth" value="${dto.productImageWidth}" style="width: 80px !important"> X <input type="text" name="productImageHeight" value="${dto.productImageHeight}" style="width: 80px !important">
 										<span class="help-block">宽 × 高，单位：像素</span>
 									</div>
 								</div>
 								<div class="control-group">
-									<label class="control-label" for=""><span class="red">*</span> 图片模块</label>
+									<label class="control-label" for=""><span class="red">*</span> 图片模块图片展示</label>
 									<div class="controls">
-										<input type="text" name="" value="" style="width: 80px !important"> X <input type="text" name="" value="" style="width: 80px !important">
+										<input type="text" name="imageImageWidth" value="${dto.imageImageWidth}" style="width: 80px !important"> X <input type="text" name="imageImageHeight" value="${dto.imageImageHeight}" style="width: 80px !important">
 										<span class="help-block">宽 × 高，单位：像素</span>
 									</div>
 								</div>
 								<div class="control-group">
-									<label class="control-label" for=""><span class="red">*</span> 文章模块</label>
+									<label class="control-label" for=""><span class="red">*</span> 下载模块图片展示</label>
 									<div class="controls">
-										<input type="text" name="" value="" style="width: 80px !important"> X <input type="text" name="" value="" style="width: 80px !important">
+										<input type="text" name="downloadImageHeight" value="${dto.downloadImageHeight}" style="width: 80px !important"> X <input type="text" name="downloadImageWidth" value="${dto.downloadImageWidth}" style="width: 80px !important">
 										<span class="help-block">宽 × 高，单位：像素</span>
 									</div>
 								</div>
 								<div class="form-actions">
-									<button class="btn btn-primary" type="submit">保存</button>
+									<button class="btn btn-primary" id="save-btn" type="button" onclick="doSave()">保存</button>
 								</div>
 							</form>	
 						</div>
@@ -105,3 +56,55 @@
 		</div>
 	</div>
 </div>
+<script type="text/javascript">
+function doSave() {
+	if ($('#fform').valid()) {
+		$.ajax2({
+			url : "${ctx}/console/imageConfig/doSaveImageConfig",
+			data : $("#fform").serialize(),
+			btn : '#save-btn'
+		});
+	}
+}
+$(function() {
+	
+	$('#fform').validate({
+		rules: {
+			productImageWidth: {
+				required: true,
+				number: true
+			},
+			productImageHeight: {
+				required: true,
+				number: true
+			},
+			imageImageWidth: {
+				required: true,
+				number: true
+			},
+			imageImageHeight: {
+				required: true,
+				number: true
+			},
+			downloadImageWidth: {
+				required: true,
+				number: true
+			},
+			downloadImageHeight: {
+				required: true,
+				number: true
+			}
+		},
+		errorClass: "help-inline",
+		errorElement: "span",
+		highlight:function(element, errorClass, validClass) {
+			$(element).parents('.control-group').removeClass('success');
+			$(element).parents('.control-group').addClass('error');
+		},
+		unhighlight: function(element, errorClass, validClass) {
+			$(element).parents('.control-group').removeClass('error');
+			$(element).parents('.control-group').addClass('success');
+		}
+	});
+});
+</script>

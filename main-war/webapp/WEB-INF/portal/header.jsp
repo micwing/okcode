@@ -4,7 +4,7 @@
             <div class="container">
                 <div class="row">
                     <div class="span4 logo">
-                        <a class="logo" href="index.html">
+                        <a class="logo" href="${baseConfig.siteUrl}">
                             <img alt="logo" title="${baseConfig.systemName}" src="${ctx}${baseConfig.siteLogoUrl}">
                         </a>
                     </div>

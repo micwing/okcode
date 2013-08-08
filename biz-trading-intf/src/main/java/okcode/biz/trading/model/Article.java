@@ -34,6 +34,7 @@ public class Article implements Serializable {
 	private static final long serialVersionUID = -441280225512165188L;
 	
 	public static final String ATTR_PRICE = "price";
+	public static final String ATTR_IMAGE_URL_1_THUMB = "imageUrl1thumb";
 	public static final String ATTR_IMAGE_URL_1 = "imageUrl1";
 	public static final String ATTR_IMAGE_URL_2 = "imageUrl2";
 	public static final String ATTR_IMAGE_URL_3 = "imageUrl3";

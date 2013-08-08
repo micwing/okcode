@@ -137,7 +137,7 @@ $(function () {
 				maxlength:100
 			},
 			subTitle: {
-				maxlength:100
+				maxlength:200
 			},
 			updateAt: {
 				required: true

@@ -25,9 +25,8 @@
 	                            	<c:forEach items="${articleList}" var="article">
 		                                <div class="post-item">
 		                                    <h2>${article.title}</h2>
-		                                    <img alt="" src="img/blog05.jpg" />
 		                                    <p class="post-description">${article.subTitle}</p>
-		                                    <a class="post-more" href="${ctx}/news/detail/1">阅读全文&nbsp;&raquo;</a>
+		                                    <a class="post-more" href="${ctx}/portal/article/detail/${article.id}">阅读全文&nbsp;&raquo;</a>
 		                                    <div class="post-item-panel">
 		                                        <ul>
 		                                            <li class="date">
@@ -35,15 +34,14 @@
 		                                              <c:if test="${!empty article.author}">
 			                                            <li><p><i class="icon-user"></i>by ${article.author}</p></li>
 		                                              </c:if>
-		                                            <li><p><i class="icon-tags"></i><a href="default.htm">photos</a>, <a href="default.htm">design</a></p></li>
-		                                            <li class="comments"><p><i class="icon-comments-alt"></i><span>2 comments</span></p></li>
+		                                            <li><p><i class="icon-tags"></i><a href="${ctx}/portal/catalog/${article.catalog.module}/${article.catalog.alias}">${article.catalog.title}</a></p></li>
 		                                        </ul>
 		                                    </div>
 		                                </div>
 	                            	</c:forEach>
 	                                <div class="pagination pull-right">
 	                                     <jsp:include page="../../util/paging.jsp">
-											<jsp:param name="_paging_base_url" value="${ctx}/portal/article/${catalog.alias}?a=a"/>
+											<jsp:param name="_paging_base_url" value="${ctx}/portal/article/${catalog.alias}?ctx="/>
 											<jsp:param name="_paging_range" value="3"/>
 											<jsp:param name="_paging_size" value="10"/>
 										</jsp:include>

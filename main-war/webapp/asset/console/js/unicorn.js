@@ -118,7 +118,7 @@ $(document).ready(function(){
 
 function bindSwitchCheckbox() {
 	$('.make-switch').on('switch-change', function (e, data) {
-		$(".make-switch input:checkbox").attr('checked', data.value);
+		$(this).find('input:checkbox').attr('checked', data.value);
 	});
 }
 

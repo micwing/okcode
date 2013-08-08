@@ -1,5 +1,6 @@
 package okcode.biz.trading.site.service.impl;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -29,6 +30,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import com.ckfinder.connector.configuration.ConfigurationFactory;
 
 
 
@@ -105,8 +108,10 @@ public class ArticleServiceImpl implements ArticleService {
 		else
 			attr.remove(Article.ATTR_PRICE);
 		
-		if (!StringUtils.isEmpty(product.getImageUrl1()))
+		if (!StringUtils.isEmpty(product.getImageUrl1())) {
 			attr.put(Article.ATTR_IMAGE_URL_1, product.getImageUrl1());
+			attr.put(Article.ATTR_IMAGE_URL_1_THUMB, generateThumb(product.getImageUrl1()));
+		}
 		else 
 			attr.remove(Article.ATTR_IMAGE_URL_1);
 		
@@ -161,9 +166,10 @@ public class ArticleServiceImpl implements ArticleService {
 	private void handleSaveImage(ArticleDto image, Article entity) {
 		Map<String, String> attr = entity.getAttr() != null ? entity.getAttr() : new HashMap<String, String>();
 		
-		if (!StringUtils.isEmpty(image.getImageUrl1()))
+		if (!StringUtils.isEmpty(image.getImageUrl1())) {
 			attr.put(Article.ATTR_IMAGE_URL_1, image.getImageUrl1());
-		else 
+			attr.put(Article.ATTR_IMAGE_URL_1_THUMB, generateThumb(image.getImageUrl1()));
+		} else 
 			attr.remove(Article.ATTR_IMAGE_URL_1);
 		
 		if (!StringUtils.isEmpty(image.getImageUrl2()))
@@ -217,9 +223,10 @@ public class ArticleServiceImpl implements ArticleService {
 	private void handleSaveDownload(ArticleDto download, Article entity) {
 		Map<String, String> attr = entity.getAttr() != null ? entity.getAttr() : new HashMap<String, String>();
 		
-		if (!StringUtil.isEmpty(download.getAttrFile()))
+		if (!StringUtil.isEmpty(download.getAttrFile())) {
 			attr.put(Article.ATTR_ATTR_FILE, download.getAttrFile());
-		else
+			attr.put(Article.ATTR_IMAGE_URL_1_THUMB, generateThumb(download.getImageUrl1()));			
+		} else
 			attr.remove(Article.ATTR_ATTR_FILE);
 		
 		if (!StringUtils.isEmpty(download.getImageUrl1()))
@@ -304,6 +311,17 @@ public class ArticleServiceImpl implements ArticleService {
 	}
 	
 	private void handleSaveMessage(ArticleDto message, Article entity) {
+	}
+	
+	private String generateThumb(String imageUrl) {
+		String basePath = "";
+		try {
+			basePath = ConfigurationFactory.getInstace().getConfiguration().getBaseURL();
+		} catch (Exception e1) {
+			throw new AppException(ErrorCode.SERVER_ERROR);
+		}
+		String file = imageUrl.substring(imageUrl.lastIndexOf("/"), imageUrl.length());
+		return basePath+"_thumbs/Image"+file;
 	}
 	
 	

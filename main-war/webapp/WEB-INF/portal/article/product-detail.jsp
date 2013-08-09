@@ -1,6 +1,7 @@
 <%@page contentType="text/html;charset=utf-8" pageEncoding="utf-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 				<div class="row show-grid">
                     <div class="span12">
                         <div id="breadcrumb">
@@ -23,22 +24,37 @@
                             </div>
                             <div class="span9 main-column two-columns-left">
                                 <h1>${article.title}</h1>
+                                <h4 style="margin-bottom: 10px">${article.subTitle}</h4>
+                            	<div class="flexslider detail-flexslider">
+								<ul class="slides">
+                           			<c:forEach begin="1" end="10" step="1" var="i">
+	                           			<c:set var="key" value="${fn:replace('imageUrlx','x',i)}"></c:set>
+										<c:if test="${article.attr[key] != null && article.attr[key] != ''}">
+									    <li>
+											<img alt="" src="${article.attr[key]}"/>
+									    </li>
+	                           			</c:if>
+                           			</c:forEach>
+								</ul>
+								</div>
                                 <div>${article.content}</div>
                                 <div class="post-item-panel">
                                     <ul>
-                                        <li class="date">
-                                          <p><i class="icon-calendar"></i><fmt:formatDate value="${article.updateAt}" pattern="yyyy-MM-dd" /></p></li>
-                                          <c:if test="${!empty article.author}">
-                                        	<li><p><i class="icon-user"></i>by ${article.author}</p></li>
-                                          </c:if>
-                                        <li><p><i class="icon-tags"></i><a href="default.htm">silicon valley</a>, <a href="default.htm">business</a></p></li>
-                                        <li class="comments"><p><i class="icon-comments-alt"></i><span>2 comments</span></p></li>
+                                        <c:if test="${!empty article.attr.price}">
+	                                    	<li><p><i class="icon-shopping-cart" title="价格"></i>价格 ￥${article.attr.price}</p></li>
+	                                     </c:if>
+                                        <li class="date"><p><i class="icon-calendar" title="更新时间"></i><fmt:formatDate value="${article.updateAt}" pattern="yyyy-MM-dd" /></p></li>
+                                        <c:if test="${!empty article.author}">
+                                        	<li><p><i class="icon-user" title="作者"></i>${article.author}</p></li>
+                                        </c:if>
+                                        <li><p><i class="icon-tags" title="所属栏目"></i><a href="${ctx}/portal/catalog/${article.catalog.module}/${article.catalog.alias}">${article.catalog.title}</a></p></li>
+                                        <li class="comments"><p><i class="icon-eye-open" title="访问次数"></i><span>${article.clicks}</span></p></li>
                                     </ul>
                                 </div>
-                                <ul class="pager">
+                                <!-- <ul class="pager">
                                     <li class="previous"><a href="#">&larr; 上一篇</a></li>
                                     <li class="next"><a href="#">下一篇 &rarr;</a></li>
-                                </ul>
+                                </ul> -->
                                 <hr>
                                 
                                 <div class="post-socials">
@@ -62,7 +78,7 @@
                                 </div>
                                 <hr>
                                 
-                                <div class="comments">
+                                <!-- <div class="comments">
                                     <h2>评论</h2>                                                                        
                                     <div class="comment-object">
                                         <div class="row show-grid comment-details">
@@ -91,9 +107,9 @@
                                             </table>
                                         </div>
                                     </div>                                                                                                                                              
-                                </div>
+                                </div> -->
                                 
-                                <div class="reply-form">                                    
+                                <!-- <div class="reply-form">                                    
                                 <div class="row show-grid">
                                     <h2 class="offset1">提交评论</h2>
                                     <form id="validForm">
@@ -129,7 +145,7 @@
                                         </div>
                                     </form>
                                 </div>
-                                </div>
+                                </div> -->
                                
                             </div>
                         </div>

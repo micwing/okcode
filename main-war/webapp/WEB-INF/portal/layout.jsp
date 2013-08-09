@@ -27,7 +27,7 @@
     <link rel="stylesheet" href="${ctx}/asset/portal/css/color_scheme.css" />
     <link rel="stylesheet" href="${ctx}/asset/portal/css/font-awesome.css" />
     <link rel="stylesheet" href="${ctx}/asset/portal/css/font-awesome-ie7.css" />
-    <link rel="stylesheet" href="${ctx}/asset/portal/css/flexslider.css" />
+    <link rel="stylesheet" href="${ctx}/asset/portal/js/flexslider/flexslider.css" />
     <link rel="stylesheet" href="${ctx}/asset/portal/css/jquery.fancybox.css" type="text/css" media="screen" />
     <!--[if lte IE 8]>
         <link rel="stylesheet" type="text/css" href="${ctx}/asset/portal/css/IE-fix.css" />
@@ -53,7 +53,7 @@
      
     <script type="text/javascript" src="${ctx}/asset/portal/js/jquery-ui.min.js"></script>
     <script type="text/javascript" src="${ctx}/asset/portal/js/bootstrap.js"></script>
-    <script type="text/javascript" src="${ctx}/asset/portal/js/jquery.flexslider-min.js"></script>
+    <script type="text/javascript" src="${ctx}/asset/portal/js/flexslider/jquery.flexslider.js"></script>
     <script type="text/javascript" src="${ctx}/asset/portal/js/jquery.isotope.js"></script>
     <script type="text/javascript" src="${ctx}/asset/portal/js/jquery.fancybox.pack.js"></script>
     <script type="text/javascript" src="${ctx}/asset/portal/rs-plugin/js/jquery.themepunch.plugins.min.js"></script>

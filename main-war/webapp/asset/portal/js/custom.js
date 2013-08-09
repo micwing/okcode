@@ -92,6 +92,7 @@ jQuery(document).ready(function($) {
 	 * documentation: http://flexslider.woothemes.com/
 	 */                     
 	/** --- Portfolio Item page: slider and navigation in a carousel --- **/
+	
 	// navigation           
 	$('#carousel').flexslider({
 		animation: "slide",			//String: Select your animation type, "fade" or "slide"
@@ -100,8 +101,7 @@ jQuery(document).ready(function($) {
 		slideshow: false,			//Boolean: Animate slider automatically
 		itemWidth: 80,				//{NEW} Integer: Box-model width of individual carousel items, including horizontal borders and padding.
 		itemMargin: 5,				//{NEW} Integer: Margin between carousel items.
-		asNavFor: '#slider',			//{NEW} Selector: Internal property exposed for turning the slider into a thumbnail navigation for another slider
-		useCSS:false
+		asNavFor: '#slider'			//{NEW} Selector: Internal property exposed for turning the slider into a thumbnail navigation for another slider
 	});                     
 	// slider               
 	$('#slider').flexslider({
@@ -109,10 +109,15 @@ jQuery(document).ready(function($) {
 		controlNav: false,			//Boolean: Create navigation for paging control of each clide? Note: Leave true for manualControls usage
 		animationLoop: false,		//Boolean: Should the animation loop? If false, directionNav will received "disable" classes at either end
 		slideshow: false,			//Boolean: Animate slider automatically
-		sync: "#carousel",			//{NEW} Selector: Mirror the actions performed on this slider with another slider. Use with care.
-		useCSS:false
-	});                     
-                            
+		sync: "#carousel"			//{NEW} Selector: Mirror the actions performed on this slider with another slider. Use with care.
+	});  
+	
+	$('.detail-flexslider').flexslider({
+		animation: "slide",			//String: Select your animation type, "fade" or "slide"
+		controlNav: true,			//Boolean: Create navigation for paging control of each clide? Note: Leave true for manualControls usage
+		animationLoop: true,		//Boolean: Should the animation loop? If false, directionNav will received "disable" classes at either end
+		slideshow: true			//Boolean: Animate slider automatically
+	});
                             
 /**                         
  * Custom scripts for extended interface functionality

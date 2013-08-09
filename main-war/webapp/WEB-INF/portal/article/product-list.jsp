@@ -28,7 +28,7 @@
 		                                <div class="row show-grid team-member">
 		                                	<c:if test="${!empty article.attr.imageUrl1thumb}">
 			                                    <div class="span3 photo">
-			                                        <div class="bordered-img"><img alt="${article.title}" src="${ctx}${article.attr.imageUrl1thumb}" style="width: 220px;height: 140px;"></div>
+			                                        <div class="bordered-img"><a href="${ctx}/portal/article/detail/${article.id}" title="${article.title}"><img alt="${article.title}" src="${ctx}${article.attr.imageUrl1thumb}" style="width: 220px;height: 140px;"></a></div>
 			                                    </div>
 		                                	</c:if>
 		                                	<c:if test="${empty article.attr.imageUrl1thumb}">
@@ -38,20 +38,20 @@
 		                                	</c:if>
 		                                    <div class="span6">
 		                                    	<div style="height: 100px;overflow: hidden;">
-			                                        <h2>${article.title}</h2>
+			                                        <h2><a href="${ctx}/portal/article/detail/${article.id}" title="${article.title}">${article.title}</a></h2>
 		                                       		<p>${article.subTitle}</p>
 		                                    	</div>
 		                                        <div class="post-item-panel">
 			                                        <ul>
 			                                            <c:if test="${!empty article.attr.price}">
-				                                       	<li><p><i class="icon-shopping-cart"></i> ￥${article.attr.price}</p></li>
+				                                       	<li><p><i class="icon-shopping-cart" title="价格"></i>价格 ￥${article.attr.price}</p></li>
 				                                        </c:if>
-			                                            <li class="date"><p><i class="icon-calendar"></i><fmt:formatDate value="${article.updateAt}" pattern="yyyy-MM-dd" /></p></li>
+			                                            <li class="date"><p><i class="icon-calendar" title="更新时间"></i><fmt:formatDate value="${article.updateAt}" pattern="yyyy-MM-dd" /></p></li>
 		                                              	<c:if test="${!empty article.author}">
-			                                            <li><p><i class="icon-user"></i>${article.author}</p></li>
+			                                            <li><p><i class="icon-user" title="作者"></i>${article.author}</p></li>
 		                                             	</c:if>
-			                                            <li><p><i class="icon-tags"></i><a href="${ctx}/portal/catalog/${article.catalog.module}/${article.catalog.alias}">${article.catalog.title}</a></p></li>
-			                                            <li class="comments"><p><i class="icon-eye-open"></i><span>${article.clicks}</span></p></li>
+			                                            <li><p><i class="icon-tags" title="所属栏目"></i><a href="${ctx}/portal/catalog/${article.catalog.module}/${article.catalog.alias}">${article.catalog.title}</a></p></li>
+			                                            <li class="comments"><p><i class="icon-eye-open" title="访问次数"></i><span>${article.clicks}</span></p></li>
 			                                        </ul>
 			                                    </div>
 		                                    </div>

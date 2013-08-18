@@ -6,7 +6,11 @@
                         <div id="breadcrumb">
                         <ul>
                             <li class="home"><a href="${ctx}/">首页</a></li>
-                            <li><a href="${ctx}/news">新闻资讯</a></li>
+                            <c:forEach items="${breadCatalogs}" var="breadCatalog">
+	                            <li><a href="${ctx}/portal/catalog/${breadCatalog.module}/${breadCatalog.alias}" 
+                                          	${breadCatalog.newWindowOpen?'target=_blank':''}
+                                          	>${breadCatalog.title}</a></li>
+                            </c:forEach>
                             <li>公司新闻</li>
                         </ul>
                         </div>

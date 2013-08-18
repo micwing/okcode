@@ -41,6 +41,10 @@ public interface CatalogService {
 	
 	List<CatalogItem> listNavCatalogItems();
 	
+	Catalog findNavCatalog(Catalog catalog);
+	
+	List<Catalog> findNavBreadCatalogs(Catalog catalog);
+	
 	
 	Catalog findByAlias(Module module, String alias);
 }

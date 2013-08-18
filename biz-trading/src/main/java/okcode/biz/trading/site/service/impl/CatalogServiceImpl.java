@@ -120,7 +120,7 @@ public class CatalogServiceImpl implements CatalogService {
 	public Catalog findById(Long id) {
 		return catalogDao.findOne(id);
 	}
-
+	
 	@Override
 	public List<Catalog> findByIds(Collection<Long> ids) {
 		return catalogDao.findByIdInOrderByRankAsc(ids);
@@ -259,4 +259,43 @@ public class CatalogServiceImpl implements CatalogService {
 		return target;
 	}
 
+	@Override
+	public Catalog findNavCatalog(Catalog catalog) {
+		if (catalog == null)
+			return null;
+		if (catalog.getNavDisplay().ordinal() == CatalogNavDisplay.MAIN.ordinal()
+				|| catalog.getNavDisplay().ordinal() == CatalogNavDisplay.BOTH.ordinal())
+			return catalog;
+		if (catalog.getPid() == null || catalog.getPid() <= 0)
+			return null;
+		return findNavCatalog(catalogDao.findOne(catalog.getPid()));
+	}
+
+	@Override
+	public List<Catalog> findNavBreadCatalogs(Catalog catalog) {
+		if (catalog == null)
+			return null;
+		
+		List<Catalog> catalogs = new ArrayList<Catalog>();
+		//一级
+		if (catalog.getPid() == null || catalog.getPid() <= 0) {
+			catalogs.add(catalog);			
+			return catalogs;
+		}
+		
+		//二级
+		Catalog parent2 = catalogDao.findOne(catalog.getPid());
+		if (parent2.getPid() == null || parent2.getPid() <= 0) {
+			catalogs.add(parent2);
+			catalogs.add(catalog);			
+			return catalogs;
+		}
+		
+		//三级
+		Catalog parent1 = catalogDao.findOne(parent2.getPid());
+		catalogs.add(parent1);
+		catalogs.add(parent2);
+		catalogs.add(catalog);
+		return catalogs;
+	}
 }

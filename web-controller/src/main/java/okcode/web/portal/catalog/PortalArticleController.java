@@ -58,7 +58,8 @@ public class PortalArticleController extends BaseController {
 		ModelAndView mav = new ModelAndView(PORTAL+"article/list");
 		mav.addObject("articleList", articlePage.getContent());
 		mav.addObject("page", articlePage);
-		mav.addObject("catalog", catalog);
+		mav.addObject("navCatalog", catalogService.findNavCatalog(catalog));
+		mav.addObject("breadCatalogs", catalogService.findNavBreadCatalogs(catalog));
 		mav.setViewName(PORTAL+"article/"+catalog.getModule()+"-list");
 		return mav;
 	}
@@ -68,10 +69,13 @@ public class PortalArticleController extends BaseController {
 		Article article = articleService.findById(aid);
 		if (article == null)
 			throw new AppException(ErrorCode.ENTITY_NOT_FOUND, "内容未找到！");
+		Catalog catalog = article.getCatalog();
 		ModelAndView mav = new ModelAndView();
 		Module module = article.getCatalog().getModule();
 		mav.setViewName(PORTAL+"article/"+module+"-detail");
 		mav.addObject("article", article);
+		mav.addObject("navCatalog", catalogService.findNavCatalog(catalog));
+		mav.addObject("breadCatalogs", catalogService.findNavBreadCatalogs(catalog));
 		return mav;
 	}
 }

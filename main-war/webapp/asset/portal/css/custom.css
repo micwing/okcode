@@ -1503,9 +1503,9 @@ ul.icons {
     text-shadow: none;
 }
 .nav-tabs .open .dropdown-toggle, .nav-pills .open .dropdown-toggle, .nav > li.dropdown.open.active > a:hover {
-    background-color: #999999;
-    border-color: #999999;
-    color: #333333;
+    background-color: #FFFFFF;
+    border-color: #2773AE;
+    color: #2773AE;
 }
 .navbar-inner .in {
     margin-top: 20px;

@@ -8,6 +8,8 @@ public class CatalogItem {
 	
 	private Catalog catalog;
 	
+	private boolean activeFlag;
+	
 	private List<CatalogItem> subCatalog;
 
 	public Catalog getCatalog() {
@@ -24,6 +26,14 @@ public class CatalogItem {
 
 	public void setSubCatalog(List<CatalogItem> subCatalog) {
 		this.subCatalog = subCatalog;
+	}
+
+	public boolean isActiveFlag() {
+		return activeFlag;
+	}
+
+	public void setActiveFlag(boolean activeFlag) {
+		this.activeFlag = activeFlag;
 	}
 
 }

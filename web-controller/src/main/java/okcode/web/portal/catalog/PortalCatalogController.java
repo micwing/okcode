@@ -47,6 +47,8 @@ public class PortalCatalogController extends BaseController {
 			throw new AppException(ErrorCode.ENTITY_NOT_FOUND, "栏目未找到！");
 		
 		ModelAndView mav = new ModelAndView();
+		mav.addObject("navCatalog", catalogService.findNavCatalog(catalog));
+		mav.addObject("breadCatalogs", catalogService.findNavBreadCatalogs(catalog));
 		if (catalog.getClickDisplay().ordinal() == CatalogClickDisplay.FIRST_CONTENT.ordinal()) {
 			//显示本栏目第一个内容
 			

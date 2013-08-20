@@ -52,6 +52,7 @@
 	<mvc:default-servlet-handler />
 	
 	<mvc:resources mapping="/asset/**" location="/asset/" />
+	<mvc:resources mapping="/portal/upload/**" location="file:///develop/upload/"/>
 
 	<!-- tiles -->
 	<bean id="tilesResolver"

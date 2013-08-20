@@ -6,15 +6,13 @@ import java.util.Map;
 import java.util.Set;
 
 
-public class RunStatusDto {
+public class RunStatusDto implements CommonConfigDto {
 	
-	public RunStatusDto() {
-	}
-	
-	public RunStatusDto(Map<String, String> map) {
+	public RunStatusDto setMap(Map<String, String> map) {
 		this.runStatus = map.get("runStatus");
 		this.recoverTime = map.get("recoverTime");
 		this.siteNotice = map.get("siteNotice");
+		return this;
 	}
 	
 	public Map<String, String> toMap() {
@@ -25,7 +23,7 @@ public class RunStatusDto {
 		return map;
 	}
 	
-	public static Set<String> getKeys() {
+	public Set<String> getKeys() {
 		Set<String> set = new HashSet<String>();
 		set.add("runStatus");
 		set.add("recoverTime");

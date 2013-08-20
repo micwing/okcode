@@ -1,25 +1,20 @@
 <%@page contentType="text/html;charset=utf-8" pageEncoding="utf-8" %>
+<%@page import="okcode.biz.trading.model.Article" %>
+<%@page import="okcode.framework.utils.HtmlUtil" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<% 
+String articleTitle = ((Article) request.getAttribute("article")).getTitle();
+String noHtmlTitle = HtmlUtil.delHTMLTag(articleTitle);
+%>
 				<div class="row show-grid">
                     <div class="span12">
                         <div id="breadcrumb">
-                        <ul>
-                            <li class="home"><a href="${ctx}/">首页</a></li>
-                            <li><a href="${ctx}/news">新闻资讯</a></li>
-                            <li><a href="${ctx}/news/list/1">公司新闻</a></li>
-                            <li>一刻企业建站系统研发开始，互联网迎来新格局</li>
-                        </ul>
+                        	<jsp:include page="common-breadcrumb.jsp" />
                         </div>
                         <div class="row show-grid">
                             <div id="left-sidebar" class="span3 sidebar">                               
-                                <div class="side-nav sidebar-block">
-                                    <h2>新闻资讯</h2>
-                                    <ul>
-                                            <li class="active"><a href="stickies.html">公司新闻</a></li>
-                                            <li><a href="columns.html">行业动态</a></li>
-                                    </ul>
-                                </div>                                
+                                <jsp:include page="common-sideCatalogItems.jsp" />
                             </div>
                             <div class="span9 main-column two-columns-left">
                                 <h1>${article.title}</h1>

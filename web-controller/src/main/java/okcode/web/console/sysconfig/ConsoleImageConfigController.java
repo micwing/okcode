@@ -1,7 +1,8 @@
 package okcode.web.console.sysconfig;
 
 import okcode.biz.trading.dto.ImageConfigDto;
-import okcode.biz.trading.intf.ImageConfigService;
+import okcode.biz.trading.intf.CommonConfigService;
+import okcode.biz.trading.util.BizKeyValue;
 import okcode.framework.result.Result;
 import okcode.web.base.BaseController;
 
@@ -23,19 +24,20 @@ import org.springframework.web.servlet.ModelAndView;
 public class ConsoleImageConfigController extends BaseController {
 	
 	@Autowired
-	private ImageConfigService imageConfigService;
+	private CommonConfigService commonConfigService;
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView index() {
 		ModelAndView mav = new ModelAndView(CONSOLE + "imageConfig/index");
-		mav.addObject("dto", imageConfigService.findImageConfig());
+		mav.addObject("dto", commonConfigService.find(
+				new ImageConfigDto(), BizKeyValue.CONFIG_SERVICE_SYS_CONFIG_IMAGE_CONFIG));
 		return mav;
 	}
 	
 	@RequestMapping(value = "/doSaveImageConfig", method = RequestMethod.POST)
 	@ResponseBody
 	public Result doSaveImageConfig(ImageConfigDto dto) {
-		imageConfigService.saveImageConfig(dto);
+		commonConfigService.save(dto, BizKeyValue.CONFIG_SERVICE_SYS_CONFIG_IMAGE_CONFIG);
 		Result result = new Result("保存成功！");
 		return result;
 	}

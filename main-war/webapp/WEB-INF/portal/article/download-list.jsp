@@ -4,21 +4,11 @@
 				<div class="row show-grid">
                     <div class="span12">
                         <div id="breadcrumb">
-                        <ul>
-                            <li class="home"><a href="${ctx}/">首页</a></li>
-                            <li><a href="${ctx}/news">新闻资讯</a></li>
-                            <li>公司新闻</li>
-                        </ul>
+                        	<jsp:include page="common-breadcrumb.jsp" />
                         </div>
                         <div class="row show-grid">
                             <div id="left-sidebar" class="span3 sidebar">                               
-                                <div class="side-nav sidebar-block">
-                                    <h2>新闻资讯</h2>
-                                    <ul>
-                                            <li class="active"><a href="stickies.html">公司新闻</a></li>
-                                            <li><a href="columns.html">行业动态</a></li>
-                                    </ul>
-                                </div>                                
+                                <jsp:include page="common-sideCatalogItems.jsp" />
                             </div>
                             <div class="span9 main-column two-columns-left">
                             	<c:if test="${!empty articleList}">
@@ -27,7 +17,7 @@
 		                                    <h2>${article.title}</h2>
 		                                    <img alt="" src="img/blog05.jpg" />
 		                                    <p class="post-description">${article.subTitle}</p>
-		                                    <a class="post-more" href="${ctx}/news/detail/1">阅读全文&nbsp;&raquo;</a>
+		                                    <a class="post-more" href="${ctx}/portal/article/detail/${article.id}">阅读全文&nbsp;&raquo;</a>
 		                                    <div class="post-item-panel">
 		                                        <ul>
 		                                            <li class="date">

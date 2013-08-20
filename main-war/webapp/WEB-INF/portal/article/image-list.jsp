@@ -5,65 +5,35 @@
 				<div class="row show-grid">
                     <div class="span12">
                         <div id="breadcrumb">
-                        <ul>
-                            <li class="home"><a href="${ctx}/">首页</a></li>
-                            <li><a href="${ctx}/news">新闻资讯</a></li>
-                            <li>公司新闻</li>
-                        </ul>
+                        	<jsp:include page="common-breadcrumb.jsp" />
                         </div>
                         <div class="row show-grid">
                             <div id="left-sidebar" class="span3 sidebar">                               
-                                <div class="side-nav sidebar-block">
-                                    <h2>新闻资讯</h2>
-                                    <ul>
-                                            <li class="active"><a href="stickies.html">公司新闻</a></li>
-                                            <li><a href="columns.html">行业动态</a></li>
-                                    </ul>
-                                </div>                                
+                                <jsp:include page="common-sideCatalogItems.jsp" />
                             </div>
                             <div class="span9 main-column two-columns-left">
                             	<c:if test="${!empty articleList}">
+	                            <ul id="gallery-main" class="thumbnails gallery">
 	                            	<c:forEach items="${articleList}" var="article">
+		                            	<li class="span3 small hp-wrapper item" style="text-align: center;">
+				                            <a href="${ctx}/portal/article/detail/${article.id}" title="${article.title}" class="thumbnail">
+												<img alt="" style="width: 220px; height: 160px;" src="${ctx}${article.attr.imageUrl1thumb}" />
+											</a>
+											<a href="${ctx}/portal/article/detail/${article.id}" title="${article.title}">
+												${article.title}
+											</a>
+				                        </li>
 	                            	
-		                                <div class="row show-grid team-member">
-		                                	<c:if test="${!empty article.attr.imageUrl1thumb}">
-			                                    <div class="span3 photo">
-			                                        <div class="bordered-img"><a href="${ctx}/portal/article/detail/${article.id}" title="${article.title}"><img alt="${article.title}" src="${ctx}${article.attr.imageUrl1thumb}" style="width: 220px;height: 140px;"></a></div>
-			                                    </div>
-		                                	</c:if>
-		                                	<c:if test="${empty article.attr.imageUrl1thumb}">
-			                                    <div class="span3 photo">
-			                                        <div class="bordered-img"><div style="width: 220px;height: 140px;" ></div></div>
-			                                    </div>
-		                                	</c:if>
-		                                    <div class="span6">
-		                                    	<div style="height: 100px;overflow: hidden;">
-			                                        <h2><a href="${ctx}/portal/article/detail/${article.id}" title="${article.title}">${article.title}</a></h2>
-		                                       		<p>${article.subTitle}</p>
-		                                    	</div>
-		                                        <div class="post-item-panel">
-			                                        <ul>
-			                                            <li class="date"><p><i class="icon-calendar" title="更新时间"></i><fmt:formatDate value="${article.updateAt}" pattern="yyyy-MM-dd" /></p></li>
-		                                              	<c:if test="${!empty article.author}">
-			                                            <li><p><i class="icon-user" title="作者"></i>${article.author}</p></li>
-		                                             	</c:if>
-			                                            <li><p><i class="icon-tags" title="所属栏目"></i><a href="${ctx}/portal/catalog/${article.catalog.module}/${article.catalog.alias}">${article.catalog.title}</a></p></li>
-			                                            <li class="comments"><p><i class="icon-eye-open" title="访问次数"></i><span>${article.clicks}</span></p></li>
-			                                        </ul>
-			                                    </div>
-		                                    </div>
-		                                    <div class="member-divider"></div>
-		                                </div>
-                                
 	                            	</c:forEach>
-	                                <div class="pagination pull-right">
-	                                     <jsp:include page="../../util/paging.jsp">
-											<jsp:param name="_paging_base_url" value="${ctx}/portal/article/${catalog.alias}?ctx="/>
-											<jsp:param name="_paging_range" value="3"/>
-											<jsp:param name="_paging_size" value="10"/>
-										</jsp:include>
-	                                 </div>
-                            	</c:if>
+			                    </ul>
+                                <div class="pagination pull-right">
+                                     <jsp:include page="../../util/paging.jsp">
+										<jsp:param name="_paging_base_url" value="${ctx}/portal/article/${catalog.alias}?ctx="/>
+										<jsp:param name="_paging_range" value="3"/>
+										<jsp:param name="_paging_size" value="10"/>
+									</jsp:include>
+                                 </div>
+	                            </c:if>
                             </div>
                             
                         </div>

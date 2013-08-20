@@ -6,17 +6,15 @@ import java.util.Map;
 import java.util.Set;
 
 
-public class BaseConfigDto {
+public class BaseConfigDto implements CommonConfigDto {
 	
-	public BaseConfigDto() {
-	}
-	
-	public BaseConfigDto(Map<String, String> map) {
+	public BaseConfigDto setMap(Map<String, String> map) {
 		this.systemName = map.get("systemName");
 		this.siteLogoUrl = map.get("siteLogoUrl");
 		this.siteUrl = map.get("siteUrl");
 		this.siteKeyword = map.get("siteKeyword");
 		this.siteDescription = map.get("siteDescription");
+		return this;
 	}
 	
 	public Map<String, String> toMap() {
@@ -29,7 +27,7 @@ public class BaseConfigDto {
 		return map;
 	}
 	
-	public static Set<String> getKeys() {
+	public Set<String> getKeys() {
 		Set<String> set = new HashSet<String>();
 		set.add("systemName");
 		set.add("siteLogoUrl");

@@ -28,8 +28,8 @@
                                     <li class="single ${navCatalog == null?'active':''}">
                                     	<a href="${baseConfig.siteUrl}">首页<i>Home</i></a>
                                     </li>
-                                    <c:if test="${!empty catalogItems}">
-                                    <c:forEach items="${catalogItems}" var="firstCatalogItem">
+                                    <c:if test="${!empty navCatalogItems}">
+                                    <c:forEach items="${navCatalogItems}" var="firstCatalogItem">
                                     	
                                     	<li class="${(empty firstCatalogItem.subCatalog) ? 'single':'dropdown'} ${navCatalog.id == firstCatalogItem.catalog.id?'active':''}">
 	                                        <a href="${ctx}/portal/catalog/${firstCatalogItem.catalog.module}/${firstCatalogItem.catalog.alias}" 

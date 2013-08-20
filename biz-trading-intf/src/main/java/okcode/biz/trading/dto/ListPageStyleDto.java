@@ -6,9 +6,9 @@ import java.util.Map;
 import java.util.Set;
 
 
-public class ImageConfigDto implements CommonConfigDto {
+public class ListPageStyleDto implements CommonConfigDto {
 	
-	public ImageConfigDto setMap(Map<String, String> map) {
+	public ListPageStyleDto setMap(Map<String, String> map) {
 		this.productImageHeight = map.get("productImageHeight");
 		this.productImageWidth = map.get("productImageWidth");
 		this.imageImageHeight = map.get("imageImageHeight");

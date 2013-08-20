@@ -6,16 +6,14 @@ import java.util.Map;
 import java.util.Set;
 
 
-public class EmailConfigDto {
+public class EmailConfigDto implements CommonConfigDto {
 	
-	public EmailConfigDto() {
-	}
-	
-	public EmailConfigDto(Map<String, String> map) {
+	public EmailConfigDto setMap(Map<String, String> map) {
 		this.senderName = map.get("senderName");
 		this.address = map.get("address");
 		this.stmpServer = map.get("stmpServer");
 		this.password = map.get("password");
+		return this;
 	}
 	
 	public Map<String, String> toMap() {
@@ -27,7 +25,7 @@ public class EmailConfigDto {
 		return map;
 	}
 	
-	public static Set<String> getKeys() {
+	public Set<String> getKeys() {
 		Set<String> set = new HashSet<String>();
 		set.add("senderName");
 		set.add("address");

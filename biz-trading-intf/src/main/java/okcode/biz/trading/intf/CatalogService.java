@@ -41,6 +41,8 @@ public interface CatalogService {
 	
 	List<CatalogItem> listNavCatalogItems();
 	
+	List<Catalog> listBottomCatalogs();
+	
 	Catalog findNavCatalog(Catalog catalog);
 	
 	List<Catalog> findNavBreadCatalogs(Catalog catalog);

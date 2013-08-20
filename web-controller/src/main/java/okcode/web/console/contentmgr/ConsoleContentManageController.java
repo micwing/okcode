@@ -108,12 +108,12 @@ public class ConsoleContentManageController extends BaseController {
 //			article.setId(null);
 //			article = articleService.saveArticle(article);
 //		}
+		Article entity = articleService.saveArticle(article);
 		if (article.getId() == null) {
 			result.setMessage("添加成功！");
 		} else {
 			result.setMessage("修改成功！");
 		}
-		Article entity = articleService.saveArticle(article);
 		result.setValue(entity.getId());
 		return result;
 	}

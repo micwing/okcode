@@ -6,14 +6,15 @@ import java.util.Map;
 import java.util.Set;
 
 
-public class SafetyConfigDto {
+public class SafetyConfigDto implements CommonConfigDto {
 	
 	public SafetyConfigDto() {
 	}
 	
-	public SafetyConfigDto(Map<String, String> map) {
+	public SafetyConfigDto setMap(Map<String, String> map) {
 		this.adminLoginVerificationCode = map.get("adminLoginVerificationCode");
 		this.portalSubmitVerificationCode = map.get("portalSubmitVerificationCode");
+		return this;
 	}
 	
 	public Map<String, String> toMap() {
@@ -23,7 +24,7 @@ public class SafetyConfigDto {
 		return map;
 	}
 	
-	public static Set<String> getKeys() {
+	public Set<String> getKeys() {
 		Set<String> set = new HashSet<String>();
 		set.add("adminLoginVerificationCode");
 		set.add("portalSubmitVerificationCode");

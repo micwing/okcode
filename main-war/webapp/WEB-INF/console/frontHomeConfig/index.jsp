@@ -20,63 +20,126 @@
 					<div class="row-fluid">
 						<div class="span8">
 							
-							<form class="form-horizontal" method="get" action="#">
+							<form id="fform" class="form-horizontal" method="get" action="#">
 								<div class="control-group">
-									<label class="control-label" for="">设为首页和收藏本站</label>
+									<label class="control-label" for="articleCatalogId">选择文章栏目</label>
 									<div class="controls">
-										<label class="checkbox">
-										<input type="checkbox" name="">
-										勾选后前台显示“设为首页”和“收藏本站”按钮
-										</label>
-									</div>	
-								</div>
-								<div class="control-group">
-									<label class="control-label" for="">文章模块显示</label>
-									<div class="controls">
-										<input type="text" style="width: 80px !important"/> 条
+										<select name="articleCatalogId">
+										<c:forEach items="${allCatalogs}" var="cata">
+											<c:if test="${cata.module == 'article'}">
+											<option value="${cata.id}" ${cata.id==dto.articleCatalogId?'selected':''}>${cata.title}</option>
+											</c:if>
+										</c:forEach>
+										</select>
 									</div>
 								</div>
 								<div class="control-group">
-									<label class="control-label" for="">产品模块显示</label>
+									<label class="control-label" for="articleNum">文章模块显示</label>
 									<div class="controls">
-										<input type="text" style="width: 80px !important"/> 条
+										<input type="text" name="articleNum" value="${dto.articleNum}" style="width: 80px !important"/> 条
+										<span class="help-block">为0则不显示</span>
 									</div>
 								</div>
 								<div class="control-group">
-									<label class="control-label" for="">图片模块显示</label>
+									<label class="control-label" for="productCatalogId">选择产品栏目</label>
 									<div class="controls">
-										<input type="text" style="width: 80px !important"/> 条
+										<select name="productCatalogId">
+										<c:forEach items="${allCatalogs}" var="cata">
+											<c:if test="${cata.module == 'product'}">
+											<option value="${cata.id}" ${cata.id==dto.productCatalogId?'selected':''}>${cata.title}</option>
+											</c:if>
+										</c:forEach>
+										</select>
 									</div>
 								</div>
 								<div class="control-group">
-									<label class="control-label" for="">下载模块显示</label>
+									<label class="control-label" for="productNum">产品模块显示</label>
 									<div class="controls">
-										<input type="text" style="width: 80px !important"/> 条
+										<input type="text" name="productNum" value="${dto.productNum}" style="width: 80px !important"/> 条
+										<span class="help-block">为0则不显示</span>
 									</div>
 								</div>
 								<div class="control-group">
-									<label class="control-label" for="">招聘模块显示</label>
+									<label class="control-label" for="imageCatalogId">选择图片栏目</label>
 									<div class="controls">
-										<input type="text" style="width: 80px !important"/> 条
+										<select name="imageCatalogId">
+										<c:forEach items="${allCatalogs}" var="cata">
+											<c:if test="${cata.module == 'image'}">
+											<option value="${cata.id}" ${cata.id==dto.imageCatalogId?'selected':''}>${cata.title}</option>
+											</c:if>
+										</c:forEach>
+										</select>
 									</div>
 								</div>
 								<div class="control-group">
-									<label class="control-label" for="">友情链接</label>
+									<label class="control-label" for="imageNum">图片模块显示</label>
 									<div class="controls">
-										<label class="checkbox">
-										<input type="checkbox" name="">
-										勾选后显示友情链接
-										</label>
+										<input type="text" name="imageNum" value="${dto.imageNum}" style="width: 80px !important"/> 条
+										<span class="help-block">为0则不显示</span>
 									</div>
 								</div>
 								<div class="control-group">
-									<label class="control-label" for="">首页简介内容</label>
+									<label class="control-label" for="downloadCatalogId">选择下载栏目</label>
 									<div class="controls">
-										<textarea rows="" cols="" placeholder="首页简介内容"></textarea>
+										<select name="downloadCatalogId">
+										<c:forEach items="${allCatalogs}" var="cata">
+											<c:if test="${cata.module == 'download'}">
+											<option value="${cata.id}" ${cata.id==dto.downloadCatalogId?'selected':''}>${cata.title}</option>
+											</c:if>
+										</c:forEach>
+										</select>
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="downloadNum">下载模块显示</label>
+									<div class="controls">
+										<input type="text" name="downloadNum" value="${dto.downloadNum}" style="width: 80px !important"/> 条
+										<span class="help-block">为0则不显示</span>
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="jobCatalogId">选择招聘栏目</label>
+									<div class="controls">
+										<select name="jobCatalogId">
+										<c:forEach items="${allCatalogs}" var="cata">
+											<c:if test="${cata.module == 'job'}">
+											<option value="${cata.id}" ${cata.id==dto.jobCatalogId?'selected':''}>${cata.title}</option>
+											</c:if>
+										</c:forEach>
+										</select>
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="jobNum">招聘模块显示</label>
+									<div class="controls">
+										<input type="text" name="jobNum" value="${dto.jobNum}" style="width: 80px !important"/> 条
+										<span class="help-block">为0则不显示</span>
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="exlinkShow">友情链接</label>
+									<div class="controls">
+										<div class="make-switch switch-small" data-on-label="显示" data-off-label="隐藏">
+						                    <input type="checkbox" name="exlinkShow" value="true" ${dto.exlinkShow==true?'checked':''} />
+						                </div>
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="frontContent">首页简介内容</label>
+									<div class="controls">
+										<textarea name="frontContent" rows="10" cols="10" placeholder="首页简介内容">${dto.frontContent}</textarea>
+										<span class="help-block">支持HTML</span>
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="specialContent">特别介绍内容</label>
+									<div class="controls">
+										<textarea name="specialContent" rows="10" cols="10" placeholder="特别介绍内容">${dto.specialContent}</textarea>
+										<span class="help-block">支持HTML</span>
 									</div>
 								</div>
 								<div class="form-actions">
-									<button class="btn btn-primary" type="submit">保存</button>
+									<button class="btn btn-primary" type="button" id="save-btn" onclick="doSave()">保存</button>
 								</div>
 							</form>
 						</div>
@@ -88,3 +151,52 @@
 		</div>
 	</div>
 </div>
+<script type="text/javascript">
+function doSave() {
+	if ($('#fform').valid()) {
+		$.ajax2({
+			url : "${ctx}/console/frontHomeConfig/doSaveFrontHomeConfig",
+			data : $("#fform").serialize(),
+			btn : '#save-btn'
+		});
+	}
+}
+$(function() {
+	
+	$('#fform').validate({
+		rules: {
+			copyrightInfo: {
+				maxlength:1000
+			},
+			addressInfo: {
+				maxlength:1000
+			},
+			contectInfo: {
+				maxlength:1000
+			},
+			specialContent: {
+				maxlength:1000
+			},
+			faxInfo: {
+				maxlength:1000
+			},
+			moreCode: {
+				maxlength:1000
+			},
+			otherInfo: {
+				maxlength:1000
+			}
+		},
+		errorClass: "help-inline",
+		errorElement: "span",
+		highlight:function(element, errorClass, validClass) {
+			$(element).parents('.control-group').removeClass('success');
+			$(element).parents('.control-group').addClass('error');
+		},
+		unhighlight: function(element, errorClass, validClass) {
+			$(element).parents('.control-group').removeClass('error');
+			$(element).parents('.control-group').addClass('success');
+		}
+	});
+});
+</script>

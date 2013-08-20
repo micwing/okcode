@@ -321,7 +321,7 @@ public class ArticleServiceImpl implements ArticleService {
 			throw new AppException(ErrorCode.SERVER_ERROR);
 		}
 		String file = imageUrl.substring(imageUrl.lastIndexOf("/"), imageUrl.length());
-		return basePath+"_thumbs/Image"+file;
+		return basePath+"_thumbs/Images"+file;
 	}
 	
 	

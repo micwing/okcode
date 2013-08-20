@@ -1,7 +1,8 @@
 package okcode.web.console.sysconfig;
 
 import okcode.biz.trading.dto.SafetyConfigDto;
-import okcode.biz.trading.intf.SafetyConfigService;
+import okcode.biz.trading.intf.CommonConfigService;
+import okcode.biz.trading.util.BizKeyValue;
 import okcode.framework.result.Result;
 import okcode.web.base.BaseController;
 
@@ -24,19 +25,20 @@ import org.springframework.web.servlet.ModelAndView;
 public class ConsoleSafetyConfigController extends BaseController {
 	
 	@Autowired
-	private SafetyConfigService safetyConfigService;
+	private CommonConfigService commonConfigService;
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView index() {
 		ModelAndView mav = new ModelAndView(CONSOLE + "safetyConfig/index");
-		mav.addObject("dto", safetyConfigService.findSafetyConfig());
+		mav.addObject("dto", commonConfigService.find(
+				new SafetyConfigDto(), BizKeyValue.CONFIG_SERVICE_SYS_CONFIG_SAFETY_CONFIG));
 		return mav;
 	}
 	
 	@RequestMapping(value = "/doSaveSafetyConfig", method = RequestMethod.POST)
 	@ResponseBody
 	public Result doSaveSafetyConfig(SafetyConfigDto dto) {
-		safetyConfigService.saveSafetyConfig(dto);
+		commonConfigService.save(dto, BizKeyValue.CONFIG_SERVICE_SYS_CONFIG_SAFETY_CONFIG);
 		Result result = new Result("保存成功！");
 		return result;
 	}

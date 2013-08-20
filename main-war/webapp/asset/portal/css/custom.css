@@ -1756,9 +1756,6 @@ input.btn {
 }
 .testimonials-block p {
     color: #666666;
-    font-family: Georgia;
-    font-size: 16px;
-    font-style: italic;
     position: relative;
     z-index: 2;
     margin: 0 0 5px;
@@ -1955,7 +1952,6 @@ input.btn {
     margin-top: 8px;
 }
 .main-column img {
-    margin-bottom: 10px;
 }
 .post-item {
     clear: both;
@@ -2873,7 +2869,6 @@ blockquote:before {
     top: 0;
 }
 .block-posts {
-    margin-bottom: 80px;
 }
 .lined-title-wrapper {
     overflow: hidden;

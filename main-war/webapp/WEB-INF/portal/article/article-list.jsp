@@ -4,25 +4,11 @@
 				<div class="row show-grid">
                     <div class="span12">
                         <div id="breadcrumb">
-                        <ul>
-                            <li class="home"><a href="${ctx}/">首页</a></li>
-                            <c:forEach items="${breadCatalogs}" var="breadCatalog">
-	                            <li><a href="${ctx}/portal/catalog/${breadCatalog.module}/${breadCatalog.alias}" 
-                                          	${breadCatalog.newWindowOpen?'target=_blank':''}
-                                          	>${breadCatalog.title}</a></li>
-                            </c:forEach>
-                            <li>公司新闻</li>
-                        </ul>
+                        	<jsp:include page="common-breadcrumb.jsp" />
                         </div>
                         <div class="row show-grid">
                             <div id="left-sidebar" class="span3 sidebar">                               
-                                <div class="side-nav sidebar-block">
-                                    <h2>新闻资讯</h2>
-                                    <ul>
-                                            <li class="active"><a href="stickies.html">公司新闻</a></li>
-                                            <li><a href="columns.html">行业动态</a></li>
-                                    </ul>
-                                </div>                                
+                                <jsp:include page="common-sideCatalogItems.jsp" />
                             </div>
                             <div class="span9 main-column two-columns-left">
                             	<c:if test="${!empty articleList}">

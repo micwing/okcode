@@ -258,6 +258,20 @@ public class CatalogServiceImpl implements CatalogService {
 		});
 		return target;
 	}
+	
+	@Override
+	public List<Catalog> listBottomCatalogs() {
+		List<Catalog> catalogs = findAll();
+		List<Catalog> bottomCatalogs = new ArrayList<Catalog>();
+		if (CollectionUtils.isEmpty(catalogs))
+			return Collections.emptyList();
+		for (Catalog catalog : catalogs) {
+			if (catalog.getNavDisplay().ordinal() == CatalogNavDisplay.BOTTOM.ordinal()
+					|| catalog.getNavDisplay().ordinal() == CatalogNavDisplay.BOTH.ordinal())
+				bottomCatalogs.add(catalog);
+		}
+		return bottomCatalogs;
+	}
 
 	@Override
 	public Catalog findNavCatalog(Catalog catalog) {

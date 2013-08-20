@@ -5,49 +5,26 @@
 				<div class="row show-grid">
                     <div class="span12">
                         <div id="breadcrumb">
-                        <ul>
-                            <li class="home"><a href="${ctx}/">首页</a></li>
-                            <li><a href="${ctx}/news">新闻资讯</a></li>
-                            <li><a href="${ctx}/news/list/1">公司新闻</a></li>
-                            <li>一刻企业建站系统研发开始，互联网迎来新格局</li>
-                        </ul>
+                        	<jsp:include page="common-breadcrumb.jsp" />
                         </div>
                         <div class="row show-grid">
                             <div id="left-sidebar" class="span3 sidebar">                               
-                                <div class="side-nav sidebar-block">
-                                    <h2>新闻资讯</h2>
-                                    <ul>
-                                            <li class="active"><a href="stickies.html">公司新闻</a></li>
-                                            <li><a href="columns.html">行业动态</a></li>
-                                    </ul>
-                                </div>                                
+                                <jsp:include page="common-sideCatalogItems.jsp" />
                             </div>
                             <div class="span9 main-column two-columns-left">
                                 <h1>${article.title}</h1>
                                 <h4 style="margin-bottom: 10px">${article.subTitle}</h4>
-                            	<div id="slider" class="flexslider">
+                            	<div class="flexslider thumbnails-flexslider">
 								<ul class="slides">
                            			<c:forEach begin="1" end="10" step="1" var="i">
 	                           			<c:set var="key" value="${fn:replace('imageUrlx','x',i)}"></c:set>
 										<c:if test="${article.attr[key] != null && article.attr[key] != ''}">
-									    <li>
+									    <li data-thumb="${article.attr[key]}">
 											<img alt="" src="${article.attr[key]}"/>
 									    </li>
 	                           			</c:if>
                            			</c:forEach>
 								</ul>
-								</div>
-								<div id="carousel" class="flexslider">
-								  <ul class="slides">
-								    <c:forEach begin="1" end="10" step="1" var="i">
-	                           			<c:set var="key" value="${fn:replace('imageUrlx','x',i)}"></c:set>
-										<c:if test="${article.attr[key] != null && article.attr[key] != ''}">
-									    <li>
-											<img alt="" src="${article.attr[key]}"/>
-									    </li>
-	                           			</c:if>
-                           			</c:forEach>
-								  </ul>
 								</div>
 
                                 <div>${article.content}</div>

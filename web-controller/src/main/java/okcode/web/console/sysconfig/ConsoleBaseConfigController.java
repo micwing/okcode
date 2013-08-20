@@ -3,7 +3,8 @@ package okcode.web.console.sysconfig;
 import okcode.biz.trading.dto.BaseConfigDto;
 import okcode.biz.trading.dto.EmailConfigDto;
 import okcode.biz.trading.dto.RunStatusDto;
-import okcode.biz.trading.intf.BaseConfigService;
+import okcode.biz.trading.intf.CommonConfigService;
+import okcode.biz.trading.util.BizKeyValue;
 import okcode.framework.result.Result;
 import okcode.web.base.BaseController;
 
@@ -26,19 +27,20 @@ import org.springframework.web.servlet.ModelAndView;
 public class ConsoleBaseConfigController extends BaseController {
 	
 	@Autowired
-	private BaseConfigService baseConfigService;
+	private CommonConfigService commonConfigService;
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView index() {
 		ModelAndView mav = new ModelAndView(CONSOLE + "baseConfig/index");
-		mav.addObject("dto", baseConfigService.findBaseConfig());
+		mav.addObject("dto", commonConfigService.find(
+				new BaseConfigDto(), BizKeyValue.CONFIG_SERVICE_SYS_CONFIG_BASE_CONFIG));
 		return mav;
 	}
 	
 	@RequestMapping(value = "/doSaveBaseConfig", method = RequestMethod.POST)
 	@ResponseBody
 	public Result doSaveBaseConfig(BaseConfigDto dto) {
-		baseConfigService.saveBaseConfig(dto);
+		commonConfigService.save(dto, BizKeyValue.CONFIG_SERVICE_SYS_CONFIG_BASE_CONFIG);
 		Result result = new Result("保存成功！");
 		return result;
 	}
@@ -46,14 +48,15 @@ public class ConsoleBaseConfigController extends BaseController {
 	@RequestMapping(value = "/emailConfig", method = RequestMethod.GET)
 	public ModelAndView emailConfig() {
 		ModelAndView mav = new ModelAndView(CONSOLE + "baseConfig/emailConfig");
-		mav.addObject("dto", baseConfigService.findEmailConfig());
+		mav.addObject("dto", commonConfigService.find(
+				new EmailConfigDto(), BizKeyValue.CONFIG_SERVICE_SYS_CONFIG_EMAIL_CONFIG));
 		return mav;
 	}
 	
 	@RequestMapping(value = "/doSaveEmailConfig", method = RequestMethod.POST)
 	@ResponseBody
 	public Result doSaveEmailConfig(EmailConfigDto dto) {
-		baseConfigService.saveEmailConfig(dto);
+		commonConfigService.save(dto, BizKeyValue.CONFIG_SERVICE_SYS_CONFIG_EMAIL_CONFIG);
 		Result result = new Result("保存成功！");
 		return result;
 	}
@@ -61,14 +64,15 @@ public class ConsoleBaseConfigController extends BaseController {
 	@RequestMapping(value = "/runStatus", method = RequestMethod.GET)
 	public ModelAndView runStatus() {
 		ModelAndView mav = new ModelAndView(CONSOLE + "baseConfig/runStatus");
-		mav.addObject("dto", baseConfigService.findRunStatus());
+		mav.addObject("dto", commonConfigService.find(
+				new RunStatusDto(), BizKeyValue.CONFIG_SERVICE_SYS_CONFIG_RUN_STATUS));
 		return mav;
 	}
 	
 	@RequestMapping(value = "/doSaveRunStatus", method = RequestMethod.POST)
 	@ResponseBody
 	public Result doSaveRunStatus(RunStatusDto dto) {
-		baseConfigService.saveRunStatus(dto);
+		commonConfigService.save(dto, BizKeyValue.CONFIG_SERVICE_SYS_CONFIG_RUN_STATUS);
 		Result result = new Result("保存成功！");
 		return result;
 	}

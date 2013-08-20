@@ -14,7 +14,7 @@
                 <li><a class="sTrash" title="" href="#">草稿箱</a></li>
             </ul>
         </li>
-        <li class="btn btn-inverse"><a title="" href="#"><i class="icon icon-eye-open"></i> <span class="text">查看前台</span></a></li>
+        <li class="btn btn-inverse"><a title="" href="${ctx}/" target="_blank"><i class="icon icon-eye-open"></i> <span class="text">查看前台</span></a></li>
         <li class="btn btn-inverse"><a title="" href="login.html"><i class="icon icon-share"></i> <span class="text">退出</span></a></li>
     </ul>
 </div>

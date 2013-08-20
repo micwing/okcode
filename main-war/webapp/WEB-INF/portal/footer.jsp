@@ -1,4 +1,5 @@
 <%@page contentType="text/html;charset=utf-8" pageEncoding="utf-8" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
         <footer id="footer">
             <div class="footer-top"></div>
             <div class="footer-wrapper">
@@ -8,44 +9,38 @@
                             <div class="row show-grid">
 
                                 <div class="span4">
-                                    <img alt="" class="footer-logo" src="${ctx}/asset/portal/img/grey_logo.png" />
+                                    <img alt="" class="footer-logo" src="${ctx}${baseConfig.siteLogoUrl}" />
 
                                     <address class="address">
-                                        <p><i class="icon-map-marker icon-large"></i>1800 North Central Expressway</p>
-                                        <p><i>&nbsp;</i>Suite 800</p>
-                                        <p><i>&nbsp;</i>Dallas, Texas 75231</p>
-                                        <p><i class="icon-phone icon-large"></i>Phone: (800) 655-7800</p>
-                                        <p><i class="icon-print icon-large"></i>Fax: (800) 655-7800</p>
+                                        <p><i class="icon-map-marker icon-large"></i>地址: ${bottomInfo.addressInfo}</p>
+                                        <p><i class="icon-phone icon-large"></i>电话: ${bottomInfo.contectInfo}</p>
+                                        <p><i class="icon-print icon-large"></i>传真: ${bottomInfo.faxInfo}</p>
                                     </address>
                                 </div>
 
                                 <div class="span4 footer-center">
-                                    <h4 class="center-title">About Us</h4>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non libero magna. Sed et quam lacus. Fusce condimentum eleifend enim a feugiat. Pellentesque viverra vehicula sem ut volutpat.</p>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non libero magna. Sed et quam lacus. Fusce condimentum eleifend enim a feugiat. Pellentesque viverra vehicula sem ut volutpat.</p>
+                                    ${bottomInfo.otherInfo}
                                 </div>
                                 
                                 <div class="span4 footer-right">
-                                    <h4 class="center-title">Navigate</h4>
+                                    <h4 class="center-title">导航</h4>
                                     <ul class="footer-navigate">
                                         <li>
-                                            <a href="default.htm">Home</a>
-                                        </li>
-                                        <li>
-                                            <a href="default.htm">Features</a>
-                                        </li>
-                                        <li>
-                                            <a href="default.htm">Pages</a>
-                                        </li>
-                                        <li>
-                                            <a href="default.htm">Portfolio</a>
-                                        </li>
-                                        <li>
-                                            <a href="default.htm">Blog</a>
-                                        </li>
-                                        <li>
-                                            <a href="default.htm">Contact</a>
-                                        </li>
+                                    	<a href="${baseConfig.siteUrl}">首页</a>
+	                                    </li>
+	                                    <c:if test="${!empty bottomCatalogs}">
+	                                    <c:forEach items="${bottomCatalogs}" var="bottomCatalog">
+	                                    	
+	                                    	<li>
+		                                        <a href="${ctx}/portal/catalog/${bottomCatalog.module}/${bottomCatalog.alias}" 
+		                                        ${bottomCatalog.newWindowOpen?'target=_blank':''}
+		                                        >
+		                                        ${bottomCatalog.title}
+		                                        </a>
+	                                    	</li>
+	                                    	
+	                                    </c:forEach>
+	                                    </c:if>
                                     </ul>
                                 </div>
                             </div>
@@ -58,7 +53,7 @@
                 <div class="container">
                     <div class="row show-grid">
                         <div class="span12">
-                            <p> bizstrap Corporate HTML Template by <a href="../www.themeleaf.com/default.htm">ThemeLeaf</a>. Copyright 2012.</p>
+                            <p>${bottomInfo.copyrightInfo}</p>
                         </div>
                     </div>
                 </div>

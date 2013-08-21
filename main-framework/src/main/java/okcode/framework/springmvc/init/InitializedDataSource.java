@@ -42,7 +42,7 @@ import org.springframework.util.StringUtils;
  * @author micwing
  * @date 2013-6-17 上午11:11:10 
  */
-public class InitializedDataSource implements DataSource, InitializingBean, ResourceLoaderAware {
+public abstract class InitializedDataSource implements DataSource, InitializingBean, ResourceLoaderAware {
 
 	public static final String MULTI_VALUE_ATTRIBUTE_DELIMITERS = ",; \n\r";
 

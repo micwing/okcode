@@ -17,7 +17,6 @@
  */
 package okcode.framework.utils;
 
-import java.io.IOException;
 
 /** 
  * @ClassName: Base64Decoder 
@@ -38,15 +37,15 @@ public class Base64Decoder {
 		return new Base64Decoder();
 	}
 
-	/**
-	 * 对给定的字符串进行Base64解密操作
-	 * 
-	 * @param str 待解密的字符串
-	 * @return 解密后的字符串
-	 * @throws IOException
-	 */
-	public static String decode(String str) throws IOException {
-		sun.misc.BASE64Decoder decoder = new sun.misc.BASE64Decoder();
-		return new String(decoder.decodeBuffer(str));
-	}
+//	/**
+//	 * 对给定的字符串进行Base64解密操作
+//	 * 
+//	 * @param str 待解密的字符串
+//	 * @return 解密后的字符串
+//	 * @throws IOException
+//	 */
+//	public static String decode(String str) throws IOException {
+//		sun.misc.BASE64Decoder decoder = new sun.misc.BASE64Decoder();
+//		return new String(decoder.decodeBuffer(str));
+//	}
 }

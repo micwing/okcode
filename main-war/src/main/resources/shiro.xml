@@ -16,15 +16,14 @@
 	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean"
 		depends-on="entityManagerFactory">
 		<property name="securityManager" ref="securityManager" />
-		<property name="loginUrl" value="/signin" />
-		<property name="successUrl" value="/console" />
-		<property name="unauthorizedUrl" value="/signin" />
+		<property name="loginUrl" value="/console/signin" />
+		<property name="successUrl" value="/console/home" />
+		<property name="unauthorizedUrl" value="/console/signin" />
 		<property name="filterChainDefinitions">
 			<value>
-				<!-- /console/** = roles[USER] 
+				/console/signin/** = anon
+				/console/** = roles[ADMIN]
 				/portal/** = anon
-				/site/** = anon
-				-->
 				/** = anon
 			</value>
 		</property>

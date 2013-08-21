@@ -275,7 +275,7 @@
                     </div>
                 </div>
             
-	            <div class="recent-tweets">
+	            <%-- <div class="recent-tweets">
 	                <div class="container">
 	                    <div class="row show-grid">
 	                        <div class="span12 twitter-wrapper">
@@ -285,4 +285,4 @@
 	                        </div>
 	                    </div>
 	                </div>
-	            </div>
+	            </div> --%>

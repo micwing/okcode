@@ -1,6 +1,6 @@
 <config>
 	<enabled>true</enabled>
-	<baseDir>D:\develop\upload\</baseDir> 
+	<baseDir>/develop/upload/</baseDir> 
 	<baseURL>/portal/upload/</baseURL>
 	<licenseKey></licenseKey>
 	<licenseName></licenseName>
@@ -48,17 +48,17 @@
 	</types>
 	<accessControls>
 		<accessControl>
-			<role>*</role>
-			<resourceType>*</resourceType>
-			<folder>/</folder>
-			<folderView>true</folderView>
-			<folderCreate>true</folderCreate>
-			<folderRename>true</folderRename>
-			<folderDelete>true</folderDelete>
-			<fileView>true</fileView>
-			<fileUpload>true</fileUpload>
-			<fileRename>true</fileRename>
-			<fileDelete>true</fileDelete>
+		    <role>ADMIN</role>
+		    <resourceType>*</resourceType>
+		    <folder>/</folder>
+		    <folderView>true</folderView>
+		    <folderCreate>true</folderCreate>
+		    <folderRename>true</folderRename>
+		    <folderDelete>true</folderDelete>
+		    <fileView>true</fileView>
+		    <fileUpload>true</fileUpload>
+		    <fileRename>true</fileRename>
+		    <fileDelete>true</fileDelete>
 		</accessControl>
 	</accessControls>
 	<thumbs>

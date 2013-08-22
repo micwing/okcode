@@ -41,7 +41,7 @@
 			destroy-method="close">
 			<property name="driverClass" value="${jdbc.driverClassName}" />
 			
-			<property name="jdbcUrl" value="jdbc:mysql://#{systemEnvironment.OPENSHIFT_MYSQL_DB_HOST}:#{systemEnvironment.OPENSHIFT_MYSQL_DB_PORT}/okcode??useUnicode=true&amp;characterEncoding=utf8&amp;autoReconnect=true&amp;zeroDateTimeBehavior=convertToNull&amp;transformedBitIsBoolean=true"/>
+			<property name="jdbcUrl" value="jdbc:mysql://#{systemEnvironment.OPENSHIFT_MYSQL_DB_HOST}:#{systemEnvironment.OPENSHIFT_MYSQL_DB_PORT}/onekr??useUnicode=true&amp;characterEncoding=utf8&amp;autoReconnect=true&amp;zeroDateTimeBehavior=convertToNull&amp;transformedBitIsBoolean=true"/>
 			<property name="username" value="#{systemEnvironment.OPENSHIFT_MYSQL_DB_USERNAME}"/>
 			<property name="password" value="#{systemEnvironment.OPENSHIFT_MYSQL_DB_PASSWORD}"/>
 			

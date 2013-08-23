@@ -1,6 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <config>
 	<enabled>true</enabled>
-	<baseDir>/develop/upload/</baseDir> 
+	<baseDir>/var/lib/openshift/52157debe0b8cd501b0000dc/app-root/data/develop/upload/</baseDir> 
 	<baseURL>/portal/upload/</baseURL>
 	<licenseKey></licenseKey>
 	<licenseName></licenseName>

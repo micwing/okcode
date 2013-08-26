@@ -14,7 +14,7 @@
 	</context-param>
 	<!--  
 	Run As -》Run Configurations... -》Environment 设置变量：
-	spring.profiles.active = development 
+	spring.profiles.active = development|production 
 	-->
 
 	<!-- encoding -->

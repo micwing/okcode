@@ -16,8 +16,6 @@
     <meta name="robots" content="follow, index" />
     <!--  SEO STUFF END -->
       
-	<link href="${ctx}/asset/portal/${ctx}/asset/portal/img/favicon.ico" rel="shortcut icon">
-
     <link rel="stylesheet" type="text/css" href="${ctx}/asset/portal/rs-plugin/css/settings.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="${ctx}/asset/portal/css/rs-responsive.css" media="screen" />
     

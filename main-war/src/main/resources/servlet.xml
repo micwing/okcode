@@ -52,7 +52,7 @@
 	<mvc:default-servlet-handler />
 	
 	<mvc:resources mapping="/asset/**" location="/asset/" />
-	<mvc:resources mapping="/portal/upload/**" location="file:///develop/upload/"/>
+	<mvc:resources mapping="/portal/upload/**" location="file:///opt/data/okcode_upload/"/>
 
 	<!-- tiles -->
 	<bean id="tilesResolver"

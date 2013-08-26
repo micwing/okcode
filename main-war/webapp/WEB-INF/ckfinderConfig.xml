@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
 	<enabled>true</enabled>
-	<baseDir>/var/lib/openshift/52157debe0b8cd501b0000dc/app-root/data/develop/upload/</baseDir> 
+	<baseDir>/opt/data/okcode_upload/</baseDir> 
 	<baseURL>/portal/upload/</baseURL>
 	<licenseKey></licenseKey>
 	<licenseName></licenseName>
@@ -20,7 +20,7 @@
 		<folder>CVS</folder>
 	</hideFolders>
 	<hideFiles>
-		<file>.*</file>
+		<!-- <file>.*</file> -->
 	</hideFiles>
 	<defaultResourceTypes></defaultResourceTypes>
 	<types>

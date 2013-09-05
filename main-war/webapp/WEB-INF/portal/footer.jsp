@@ -53,7 +53,7 @@
                 <div class="container">
                     <div class="row show-grid">
                         <div class="span12">
-                            <p>${bottomInfo.copyrightInfo}</p>
+                            <p>${bottomInfo.copyrightInfo} ${bottomInfo.moreCode}</p>
                         </div>
                     </div>
                 </div>

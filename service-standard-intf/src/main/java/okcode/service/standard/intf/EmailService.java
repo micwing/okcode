@@ -11,4 +11,6 @@ import okcode.framework.result.Result;
 public interface EmailService {
 
 	Result sendHtmlEmail(String to,String title,String templateName, Map<String, String> rootMap);
+	
+	Result sendTextEmail(String to,String title,String context);
 }

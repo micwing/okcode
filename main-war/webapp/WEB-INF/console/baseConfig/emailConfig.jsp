@@ -33,10 +33,17 @@
 									<a href="#" data-dismiss="alert" class="close">×</a>
 								</div>
 								<div class="control-group">
-									<label class="control-label" for="senderName"><span class="red">*</span> 发件人姓名</label>
+									<label class="control-label" for="stmpServer"><span class="red">*</span> SMTP服务器</label>
 									<div class="controls">
-										<input type="text" name="senderName" value="${dto.senderName}">
-										<span class="help-block">所显示的发件人姓名</span>
+										<input type="text" name="stmpServer" value="${dto.stmpServer}">
+										<span class="help-block">如163邮箱为smtp.163.com</span>
+									</div>	
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="port"><span class="red">*</span> 端口</label>
+									<div class="controls">
+										<input type="text" name="port" value="${dto.port}">
+										<span class="help-block">smtp服务器端口</span>
 									</div>	
 								</div>
 								<div class="control-group">
@@ -47,13 +54,6 @@
 									</div>	
 								</div>
 								<div class="control-group">
-									<label class="control-label" for="stmpServer"><span class="red">*</span> SMTP服务器</label>
-									<div class="controls">
-										<input type="text" name="stmpServer" value="${dto.stmpServer}">
-										<span class="help-block">如163邮箱为smtp.163.com</span>
-									</div>	
-								</div>
-								<div class="control-group">
 									<label class="control-label" for="password"><span class="red">*</span> 邮箱密码</label>
 									<div class="controls">
 										<input type="password" name="password" value="${dto.password}">
@@ -61,13 +61,13 @@
 									</div>	
 								</div>
 								<div class="control-group">
-									<label class="control-label" for=""><span class="red">*</span> 邮件发送测试</label>
+									<label class="control-label" for="testEmailAddress"> 测试邮件的接收邮箱</label>
 									<div class="controls">
-										<input class="btn" type="button" name="" value="点击测试">
+										<input type="text" id="testEmailAddress" name="testEmailAddress" value="${dto.testEmailAddress}" placeholder="测试邮件接收邮箱">
 									</div>	
 								</div>
 								<div class="form-actions">
-									<button class="btn btn-primary" type="button" id="save-btn" onclick="doSave()">保存</button>
+									<button class="btn btn-primary" type="button" id="save-btn" onclick="doSave()">保存</button> <button class="btn btn-primary" type="button" id="send-test-btn" onclick="doSendTestEmail()" >保存并发送测试邮件</button>
 								</div>
 							</form>
 						</div>
@@ -89,11 +89,25 @@ function doSave() {
 		});
 	}
 }
+function doSendTestEmail() {
+	if ($('#testEmailAddress').val() == '') {
+		$.alert('请输入测试邮件的接收邮箱','error');
+		$('#testEmailAddress').focus();
+		return;
+	}
+	if ($('#fform').valid()) {
+		$.ajax2({
+			url : "${ctx}/console/baseConfig/doSendTestEmail",
+			data : $("#fform").serialize(),
+			btn : '#save-btn,#send-test-btn'
+		});
+	}
+}
 $(function() {
 	
 	$('#fform').validate({
 		rules: {
-			senderName: {
+			port: {
 				required: true,
 				maxlength:1000
 			},

@@ -1,15 +1,15 @@
 package okcode.web.console.sysconfig;
 
+import okcode.framework.result.Result;
+import okcode.service.standard.intf.MessageService;
+import okcode.web.base.BaseController;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-
-import okcode.framework.result.Result;
-import okcode.service.standard.intf.MessageService;
-import okcode.web.base.BaseController;
 
 
 /**
@@ -20,7 +20,7 @@ import okcode.web.base.BaseController;
  */
 @Controller
 @RequestMapping(value = "/console/message")
-public class MessageController extends BaseController {
+public class ConsoleMessageController extends BaseController {
 	@Autowired
 	private MessageService messageService;
 	
@@ -63,4 +63,5 @@ public class MessageController extends BaseController {
 //		return result;
 		return null;
 	}
+	
 }

@@ -3,7 +3,6 @@ package okcode.biz.trading.site.service.impl;
 import java.util.Map;
 
 import okcode.biz.trading.dto.CommonConfigDto;
-import okcode.biz.trading.dto.SafetyConfigDto;
 import okcode.biz.trading.intf.CommonConfigService;
 import okcode.biz.trading.util.BizKeyValue;
 import okcode.service.standard.intf.ConfigService;
@@ -15,7 +14,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class CommonConfigServiceImpl implements CommonConfigService {
-
 	@Autowired
 	private ConfigService configService;
 	

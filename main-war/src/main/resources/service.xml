@@ -123,7 +123,7 @@
 	-->
 
 	<!-- email sender -->
-	<bean id="noreplyMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+	<bean id="noreplyMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl" scope="singleton">
 		<property name="host" value="smtpout.secureserver.net" />
 		<property name="port" value="25" />
 		<property name="username" value="noreply@bgoal.com" />

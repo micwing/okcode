@@ -9,40 +9,53 @@ import java.util.Set;
 public class EmailConfigDto implements CommonConfigDto {
 	
 	public EmailConfigDto setMap(Map<String, String> map) {
-		this.senderName = map.get("senderName");
+		this.port = map.get("port");
 		this.address = map.get("address");
 		this.stmpServer = map.get("stmpServer");
 		this.password = map.get("password");
+		this.testEmailAddress = map.get("testEmailAddress");
 		return this;
 	}
 	
 	public Map<String, String> toMap() {
 		Map<String, String> map = new HashMap<String, String>();
-		map.put("senderName", getSenderName());
+		map.put("port", getPort());
 		map.put("address", getAddress());
 		map.put("stmpServer", getStmpServer());
 		map.put("password", getPassword());
+		map.put("testEmailAddress", getTestEmailAddress());
 		return map;
 	}
 	
 	public Set<String> getKeys() {
 		Set<String> set = new HashSet<String>();
-		set.add("senderName");
+		set.add("port");
 		set.add("address");
 		set.add("stmpServer");
 		set.add("password");
+		set.add("testEmailAddress");
 		return set;
 	}
 	
 	private Long userId;
 	
-	private String senderName;
+	private String port;
 	
 	private String address;
 	
 	private String stmpServer;
 	
 	private String password;
+	
+	private String testEmailAddress;
+	
+	public String getTestEmailAddress() {
+		return testEmailAddress;
+	}
+
+	public void setTestEmailAddress(String testEmailAddress) {
+		this.testEmailAddress = testEmailAddress;
+	}
 
 	public Long getUserId() {
 		return userId;
@@ -52,12 +65,12 @@ public class EmailConfigDto implements CommonConfigDto {
 		this.userId = userId;
 	}
 
-	public String getSenderName() {
-		return senderName;
+	public String getPort() {
+		return port;
 	}
 
-	public void setSenderName(String senderName) {
-		this.senderName = senderName;
+	public void setPort(String port) {
+		this.port = port;
 	}
 
 	public String getAddress() {

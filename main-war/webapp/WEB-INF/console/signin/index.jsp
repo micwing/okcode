@@ -95,6 +95,7 @@
         		doSignin();
             }
        	});
+        $('#username').focus();
         </script>
     </body>
 </html>

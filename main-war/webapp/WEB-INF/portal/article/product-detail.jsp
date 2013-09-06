@@ -14,13 +14,13 @@
                             <div class="span9 main-column two-columns-left">
                                 <h1>${article.title}</h1>
                                 <h4 style="margin-bottom: 10px">${article.subTitle}</h4>
-                            	<div class="flexslider detail-flexslider">
+                            	<div class="flexslider detail-flexslider" style="width:${imageConfig.productImageWidth};">
 								<ul class="slides">
                            			<c:forEach begin="1" end="10" step="1" var="i">
 	                           			<c:set var="key" value="${fn:replace('imageUrlx','x',i)}"></c:set>
 										<c:if test="${article.attr[key] != null && article.attr[key] != ''}">
 									    <li>
-											<img alt="" src="${article.attr[key]}"/>
+											<img alt="" src="${article.attr[key]}" style="width:${imageConfig.productImageWidth}; height:${imageConfig.productImageHeight};"/>
 									    </li>
 	                           			</c:if>
                            			</c:forEach>

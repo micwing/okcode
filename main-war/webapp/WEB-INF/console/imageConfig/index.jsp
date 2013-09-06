@@ -26,21 +26,21 @@
 									<label class="control-label" for=""><span class="red">*</span> 产品模块图片展示</label>
 									<div class="controls">
 										<input type="text" name="productImageWidth" value="${dto.productImageWidth}" style="width: 80px !important"> X <input type="text" name="productImageHeight" value="${dto.productImageHeight}" style="width: 80px !important">
-										<span class="help-block">宽 × 高，单位：像素</span>
+										<span class="help-block">宽 × 高，单位：px</span>
 									</div>
 								</div>
 								<div class="control-group">
 									<label class="control-label" for=""><span class="red">*</span> 图片模块图片展示</label>
 									<div class="controls">
 										<input type="text" name="imageImageWidth" value="${dto.imageImageWidth}" style="width: 80px !important"> X <input type="text" name="imageImageHeight" value="${dto.imageImageHeight}" style="width: 80px !important">
-										<span class="help-block">宽 × 高，单位：像素</span>
+										<span class="help-block">宽 × 高，单位：px</span>
 									</div>
 								</div>
 								<div class="control-group">
 									<label class="control-label" for=""><span class="red">*</span> 下载模块图片展示</label>
 									<div class="controls">
-										<input type="text" name="downloadImageHeight" value="${dto.downloadImageHeight}" style="width: 80px !important"> X <input type="text" name="downloadImageWidth" value="${dto.downloadImageWidth}" style="width: 80px !important">
-										<span class="help-block">宽 × 高，单位：像素</span>
+										<input type="text" name="downloadImageWidth" value="${dto.downloadImageWidth}" style="width: 80px !important"> X <input type="text" name="downloadImageHeight" value="${dto.downloadImageHeight}" style="width: 80px !important">
+										<span class="help-block">宽 × 高，单位：px</span>
 									</div>
 								</div>
 								<div class="form-actions">
@@ -72,27 +72,21 @@ $(function() {
 		rules: {
 			productImageWidth: {
 				required: true,
-				number: true
 			},
 			productImageHeight: {
 				required: true,
-				number: true
 			},
 			imageImageWidth: {
 				required: true,
-				number: true
 			},
 			imageImageHeight: {
 				required: true,
-				number: true
 			},
 			downloadImageWidth: {
 				required: true,
-				number: true
 			},
 			downloadImageHeight: {
 				required: true,
-				number: true
 			}
 		},
 		errorClass: "help-inline",

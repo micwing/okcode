@@ -1,6 +1,7 @@
 <%@page contentType="text/html;charset=utf-8" pageEncoding="utf-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 				<div class="row show-grid">
                     <div class="span12">
                         <div id="breadcrumb">
@@ -12,6 +13,19 @@
                             </div>
                             <div class="span9 main-column two-columns-left">
                                 <h1>${article.title}</h1>
+                                <h4 style="margin-bottom: 10px">${article.subTitle}</h4>
+                            	<div class="flexslider thumbnails-flexslider" style="width:${imageConfig.downloadImageWidth};">
+								<ul class="slides">
+                           			<c:forEach begin="1" end="10" step="1" var="i">
+	                           			<c:set var="key" value="${fn:replace('imageUrlx','x',i)}"></c:set>
+										<c:if test="${article.attr[key] != null && article.attr[key] != ''}">
+									    <li data-thumb="${article.attr[key]}">
+											<img alt="" src="${article.attr[key]}" style="width:${imageConfig.downloadImageWidth}; height:${imageConfig.downloadImageHeight};"/>
+									    </li>
+	                           			</c:if>
+                           			</c:forEach>
+								</ul>
+								</div>
                                 <div>${article.content}</div>
                                 <div class="post-item-panel">
                                     <ul>
